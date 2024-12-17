@@ -17,6 +17,10 @@ config = dotenv_values(".env")
 def index():
     return render_template('index.html')
 
+@main_bp.route("/ffmpeg")
+def ffmpeg():
+   return render_template('ffmpeg_info.html')
+
 @main_bp.route("/settings", methods=['GET', 'POST'])
 @login_required
 def settings():
