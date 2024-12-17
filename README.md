@@ -20,7 +20,7 @@ passwd pasisti
 Install MediaJam as user pasisti:
 ``````
 cd /home/pasisti
-git clone https://github.com/FinnishNationalGallery/mediajam.git mediahillo
+git clone https://github.com/FinnishNationalGallery/mediajam_2.git mediahillo
 cd mediahillo
 python3 -m venv venv/ 
 source venv/bin/activate
