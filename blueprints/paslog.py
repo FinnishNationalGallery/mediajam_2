@@ -87,7 +87,7 @@ def get_mp_paslog():
 @paslog_bp.route('/paslog_show_data')
 @login_required
 def paslog_show_data():
-    # Define the Paslog class
+    # Define the Paslog class (move this outside the function if possible)
     class Paslog:
         def __init__(self, id, pas_mp_id, pas_created, pas_id, mp_paslog):
             self.id = id
@@ -95,25 +95,44 @@ def paslog_show_data():
             self.pas_created = pas_created
             self.pas_id = pas_id
             self.mp_paslog = mp_paslog
+
     # Create an empty list to store Paslog objects
     pdata = []
     try:
-        data = db.session.query(db_paslog_csc).filter(db_paslog_csc.mp_paslog == None).order_by(db_paslog_csc.mp_paslog.asc(), db_paslog_csc.pas_created.desc()).all()
+        # Use is_ for NULL comparison
+        data = db.session.query(db_paslog_csc).filter(db_paslog_csc.mp_paslog.is_(None)).order_by(db_paslog_csc.pas_created.desc()).all()
+        
         for row in data:
             donotmark = False
             # Check if there is already log mark made by same MuseumPlus ID
-            check = db.session.query(db_paslog_csc).filter(db_paslog_csc.pas_mp_id == row.pas_mp_id, db_paslog_csc.mp_paslog != None).all()
+            check = db.session.query(db_paslog_csc).filter(
+                db_paslog_csc.pas_mp_id == row.pas_mp_id, 
+                db_paslog_csc.mp_paslog.isnot(None)
+            ).all()
+            
+            # Modified check logic
             for p in check:
-                if len(p.mp_paslog) > 0: # Found PAS log mark already done
+                # Check for non-empty mp_paslog
+                if p.mp_paslog:  # This handles both non-None and non-empty string cases
                     donotmark = True
-                if donotmark == False:
-                    # Create Paslog objects and add them to the list
-                    pdata.append(Paslog(id=row.id, pas_mp_id=row.pas_mp_id, pas_created=row.pas_created, pas_id=row.pas_id, mp_paslog=row.mp_paslog))
-        ###
+                    break  # Exit the loop once a mark is found
+            
+            # Only append if not marked
+            if not donotmark:
+                pdata.append(Paslog(
+                    id=row.id, 
+                    pas_mp_id=row.pas_mp_id, 
+                    pas_created=row.pas_created, 
+                    pas_id=row.pas_id, 
+                    mp_paslog=row.mp_paslog
+                ))
+        
         totalSize = len(pdata)
-        db.session.commit()
         return render_template('paslog_show_data.html', data=pdata, totalSize=totalSize)
+    
     except Exception as e:
+        # Use proper error logging in production
+        # current_app.logger.error(f'Error fetching MP marked data: {str(e)}')
         return f'Error fetching MP marked data: {str(e)}', 500
 
 @paslog_bp.route('/paslog_put_mark/', methods=['GET', 'POST'])
