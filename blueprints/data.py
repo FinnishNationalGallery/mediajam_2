@@ -326,10 +326,11 @@ def analyze_file():
    logfile_validation("\n")
    return redirect(url_for('data.data'))
 
-@data_bp.route("/get_mediainfo/<fullfilename>")
-def get_mediainfo(fullfilename):
+@data_bp.route("/get_mediainfo")
+def get_mediainfo():
     # fullfilename voi olla esimerkiksi "tiedostonimi.xyz"
     # Erotetaan tiedostonimi ja pääte
+    fullfilename = request.args.get('fullfilename')
     filename, extension = os.path.splitext(fullfilename)
     extension = extension.lstrip('.')  # Poistetaan piste laajennuksen edestä
     
