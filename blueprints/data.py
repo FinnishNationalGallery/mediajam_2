@@ -325,3 +325,28 @@ def analyze_file():
    # logfile_validation(grade+"\n")
    logfile_validation("\n")
    return redirect(url_for('data.data'))
+
+@data_bp.route("/mediainfo/<fullfilename>", methods=["GET"])
+def get_mediainfo(fullfilename):
+    # fullfilename voi olla esimerkiksi "tiedostonimi.xyz"
+    # Erotetaan tiedostonimi ja pääte
+    filename, extension = os.path.splitext(fullfilename)
+    extension = extension.lstrip('.')  # Poistetaan piste laajennuksen edestä
+    
+    # Suoritetaan mediainfo-komento
+    try:
+        result = subprocess.run(["mediainfo", fullfilename], capture_output=True, text=True, check=True)
+    except subprocess.CalledProcessError as e:
+        return jsonify({"error": str(e), "output": e.output}), 400
+    
+    mediainfo_output = result.stdout
+    
+    # Kirjoitetaan tuloste tiedostoon filename-mediainfo.txt
+    output_file = f"{filename}-mediainfo.txt"
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write(mediainfo_output)
+    
+    return jsonify({
+        "message": "Mediainfo tallennettu onnistuneesti",
+        "output_file": output_file
+    }), 200

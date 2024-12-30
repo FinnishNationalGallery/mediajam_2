@@ -44,7 +44,8 @@
                 {% for file in files %}
                 <a href="{{url_for('data.file_delete')}}?name={{file}}&page=data.data&path=DATA"> <span class="material-symbols-outlined has-text-danger">delete_forever</span></a>
                 &rarr; 
-                <span class="material-symbols-outlined">file_open</span>
+
+                <a href="{{url_for('data.mediainfo')}}/filename={{file}}"> <span class="material-symbols-outlined">file_open</span> </a>
 
                 <a href="{{url_for('data.analyze_file')}}?filename={{file}}"> <span class="material-symbols-outlined" style="color:green;" onclick="togglePopup()">verified</span> </a>
 
