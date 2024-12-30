@@ -341,15 +341,10 @@ def mediainfo_data():
         return jsonify({"error": str(e), "output": e.output}), 400
     
     mediainfo_output = result.stdout
-    print("result", result)
-    print("stdout", mediainfo_output)
     
     # Kirjoitetaan tuloste tiedostoon filename-mediainfo.txt
-    output_file = f"{filename}-mediainfo.txt"
+    output_file = f"{filename}-mi.txt"
     with open(os.path.join(DATA_path, output_file), "w", encoding="utf-8") as f:
         f.write(mediainfo_output)
     
-    return jsonify({
-        "message": "Mediainfo tallennettu onnistuneesti",
-        "output_file": output_file
-    }), 200
+    return redirect(url_for('data.data'))
