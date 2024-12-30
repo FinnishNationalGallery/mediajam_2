@@ -343,7 +343,7 @@ def mediainfo_data():
     mediainfo_output = result.stdout
     
     # Kirjoitetaan tuloste tiedostoon filename-mediainfo.txt
-    output_file = f"{filename}-mi.txt"
+    output_file = f"{filename}.{extension}.txt"
     with open(os.path.join(DATA_path, output_file), "w", encoding="utf-8") as f:
         f.write(mediainfo_output)
     
