@@ -341,6 +341,8 @@ def mediainfo_data():
         return jsonify({"error": str(e), "output": e.output}), 400
     
     mediainfo_output = result.stdout
+    print("result", result)
+    print("stdout", mediainfo_output)
     
     # Kirjoitetaan tuloste tiedostoon filename-mediainfo.txt
     output_file = f"{filename}-mediainfo.txt"
