@@ -326,8 +326,8 @@ def analyze_file():
    logfile_validation("\n")
    return redirect(url_for('data.data'))
 
-@data_bp.route("/get_mediainfo")
-def get_mediainfo():
+@data_bp.route("/mediainfo_data")
+def mediainfo_data():
     # fullfilename voi olla esimerkiksi "tiedostonimi.xyz"
     # Erotetaan tiedostonimi ja pääte
     fullfilename = request.args.get('fullfilename')
@@ -344,7 +344,7 @@ def get_mediainfo():
     
     # Kirjoitetaan tuloste tiedostoon filename-mediainfo.txt
     output_file = f"{filename}-mediainfo.txt"
-    with open(output_file, "w", encoding="utf-8") as f:
+    with open(os.path.join(DATA_path, output_file), "w", encoding="utf-8") as f:
         f.write(mediainfo_output)
     
     return jsonify({
