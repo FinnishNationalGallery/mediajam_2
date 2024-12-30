@@ -326,7 +326,7 @@ def analyze_file():
    logfile_validation("\n")
    return redirect(url_for('data.data'))
 
-@data_bp.route("/mediainfo/<fullfilename>", methods=["GET"])
+@data_bp.route("/mediainfo/<fullfilename>")
 def get_mediainfo(fullfilename):
     # fullfilename voi olla esimerkiksi "tiedostonimi.xyz"
     # Erotetaan tiedostonimi ja pääte
