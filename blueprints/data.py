@@ -336,7 +336,7 @@ def mediainfo_data():
     
     # Suoritetaan mediainfo-komento
     try:
-        result = subprocess.run(["mediainfo", fullfilename], shell=True, capture_output=True, text=True, check=True)
+        result = subprocess.run(["mediainfo", os.path.join(DATA_path, fullfilename)], capture_output=True, text=True, check=True)
     except subprocess.CalledProcessError as e:
         return jsonify({"error": str(e), "output": e.output}), 400
     
