@@ -340,7 +340,7 @@ def mediainfo_data():
     except subprocess.CalledProcessError as e:
         return jsonify({"error": str(e), "output": e.output}), 400
     
-    mediainfo_output = result.stdout
+    mediainfo_output = "MEDIAINFO\n" + result.stdout
     
     # Kirjoitetaan tuloste tiedostoon filename-mediainfo.txt
     output_file = f"{filename}.{extension}.txt"
