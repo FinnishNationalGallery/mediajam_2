@@ -1,6 +1,7 @@
 import json
 import os
 import shutil
+import subprocess
 from flask import Blueprint, render_template, request, url_for, flash, redirect, send_file, session, jsonify
 from flask_login import login_required, current_user
 from utils import logfile_output, logfile_outerror, logfile_datanative, subprocess_args, get_diskinfo
@@ -81,3 +82,29 @@ def datanative_file_delete():
       except:
          deleteMessage = "Cannot delete directory!"
    return redirect(url_for(view))
+
+#######################
+### FILE MEDIAINFO  ###
+#######################
+@datanative_bp.route("/mediainfo_datanative")
+def mediainfo_datanative():
+    # fullfilename voi olla esimerkiksi "tiedostonimi.xyz"
+    # Erotetaan tiedostonimi ja pääte
+    fullfilename = request.args.get('fullfilename')
+    filename, extension = os.path.splitext(fullfilename)
+    extension = extension.lstrip('.')  # Poistetaan piste laajennuksen edestä
+    
+    # Suoritetaan mediainfo-komento
+    try:
+        result = subprocess.run(["mediainfo", os.path.join(DATANATIVE_path, fullfilename)], capture_output=True, text=True, check=True)
+    except subprocess.CalledProcessError as e:
+        return jsonify({"error": str(e), "output": e.output}), 400
+    
+    mediainfo_output = "MEDIAINFO -> " + fullfilename + "\n\n" + result.stdout
+    
+    # Kirjoitetaan tuloste tiedostoon filename-mediainfo.txt
+    output_file = f"{filename}.{extension}.txt"
+    with open(os.path.join(DATANATIVE_path, output_file), "w", encoding="utf-8") as f:
+        f.write(mediainfo_output)
+    
+    return redirect(url_for('data.data'))

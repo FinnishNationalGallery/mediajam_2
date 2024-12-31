@@ -45,7 +45,9 @@
 
                 <a href="{{url_for('datanative.datanative_file_delete')}}?name={{file}}&page=datanative.datanative&path=DATANATIVE"> <span class="material-symbols-outlined has-text-danger">delete_forever</span></a>
                 &rarr; 
-                <span class="material-symbols-outlined">file_open</span>
+
+                <a href="{{url_for('datanative.mediainfo_datanative')}}?fullfilename={{file}}"> <span class="material-symbols-outlined" onclick="togglePopup()">file_open</span> </a>
+
                 <a href="{{DATANATIVE_path}}{{file}}">{{file}}</a> 
                 <input type="hidden" id="file" name="file" value={{file}}>
                 </br>

@@ -326,6 +326,9 @@ def analyze_file():
    logfile_validation("\n")
    return redirect(url_for('data.data'))
 
+#######################
+### FILE MEDIAINFO  ###
+#######################
 @data_bp.route("/mediainfo_data")
 def mediainfo_data():
     # fullfilename voi olla esimerkiksi "tiedostonimi.xyz"
@@ -348,3 +351,4 @@ def mediainfo_data():
         f.write(mediainfo_output)
     
     return redirect(url_for('data.data'))
+
