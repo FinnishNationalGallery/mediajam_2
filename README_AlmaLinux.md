@@ -27,4 +27,6 @@ dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-re
 dnf install python3-file-scraper-full 
 dnf install python3-dpres-siptools 
 ```
-
+**INSTALL MEDIAINFO TOOLS**
+```
+dnf install mediainfo-gui mediainfo libmediainfo
