@@ -107,4 +107,4 @@ def mediainfo_datanative():
     with open(os.path.join(DATANATIVE_path, output_file), "w", encoding="utf-8") as f:
         f.write(mediainfo_output)
     
-    return redirect(url_for('data.data'))
+    return redirect(url_for('datanative.datanative'))
