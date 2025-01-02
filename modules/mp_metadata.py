@@ -45,7 +45,7 @@ def read_lido_xml():
     except Exception as e: 
         mp_inv = ""
         mp_id = ""
-        mp_name = "Error: " + e
+        mp_name = "Error: " +str(e)
         mp_created = ""
     if not os.path.exists(METADATA_path + "lido_description.xml"):
         mp_inv = ""
