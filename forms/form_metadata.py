@@ -15,4 +15,15 @@ class Settings(FlaskForm):
     mets_createdate = StringField('mets_createdate', validators= [Length(min=0, max=200)])
     submit = SubmitField('Save')
 
+class LidoSave(FlaskForm):
+    lidoRecID = StringField('Lido Record ID', validators=[DataRequired()])
+    title = StringField('Title', validators=[DataRequired()])
+    actorName = StringField('Actor Name', validators=[DataRequired()])
+    eventDate = StringField('Event Date', validators=[DataRequired()])
+    recordID = StringField('Record ID', validators=[DataRequired()])
+    aineistotyyppi = StringField('Aineistotyyppi', validators=[DataRequired()])
+    paaluokka = StringField('Pääluokka', validators=[DataRequired()])
+    erikoisluokka = StringField('Erikoisluokka', validators=[DataRequired()])
+    inventaarionumero = StringField('Inventaarionumero', validators=[DataRequired()])
+    submit = SubmitField('Generate Lido-XML')
 

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="columns">
+    <div class="column">
+        &nbsp;
+    </div>
+    <div class="column">
+        <h4 class="title is-4">Descriptive metadata - Lido-XML</h4>
+        <h5 class="title is-5">{{environment}}</h5>
+      </br></br>
+
+        {% with errors = get_flashed_messages(category_filter=["success"]) %}
+        {% if errors %}
+        <article class="message is-success">
+            <div class="message-body">
+            {%- for msg in errors %}
+            <strong>{{ msg }}</strong>
+            {% endfor -%}
+            </div>
+        </article>
+        {% endif %}
+        {% endwith %}
+        
+        {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+        <article class="message is-danger">
+            <div class="message-body">
+            {%- for msg in errors %}
+            <strong>{{ msg }}</strong>
+            {% endfor -%}
+            </div>
+        </article>
+        {% endif %}
+        {% endwith %}
+
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            {{ form.lidoRecID.label }} {{ form.lidoRecID }}<br>
+            {{ form.title.label }} {{ form.title }}<br>
+            {{ form.actorName.label }} {{ form.actorName }}<br>
+            {{ form.eventDate.label }} {{ form.eventDate }}<br>
+            {{ form.recordID.label }} {{ form.recordID }}<br>
+            {{ form.aineistotyyppi.label }} {{ form.aineistotyyppi }}<br>
+            {{ form.paaluokka.label }} {{ form.paaluokka }}<br>
+            {{ form.erikoisluokka.label }} {{ form.erikoisluokka }}<br>
+            {{ form.inventaarionumero.label }} {{ form.inventaarionumero }}<br>
+            {{ form.submit }}
+        </form>  
+    </div>
+    <div class="column">
+        &nbsp;
+    </div>
+</div>
+
+
+      
+{% endblock %}
