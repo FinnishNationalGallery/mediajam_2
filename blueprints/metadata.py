@@ -132,7 +132,7 @@ def get_object_by_title():
    totalSize, mylist, xml = mp_metadata.get_object_by_title(title)
    return render_template('metadata_object_by_title.html', title=title, totalSize=totalSize, objects=mylist, xml=xml, back=back)
 
-@metadata.route('/metadata_lido_save', methods=['GET', 'POST'])
+@metadata_bp.route('/metadata_lido_save', methods=['GET', 'POST'])
 def metadata_lido_save():
     form = LidoSave()
     if form.validate_on_submit():
