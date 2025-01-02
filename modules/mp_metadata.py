@@ -43,6 +43,7 @@ def read_lido_xml():
                     mp_created = CreatedDateISO
                 lidofile.close()
     except:
+        print("Error")
         mp_inv = ""
         mp_id = ""
         mp_name = ""

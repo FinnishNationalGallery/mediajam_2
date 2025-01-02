@@ -38,7 +38,7 @@
 
         <form action="" method="post">
             {{ form.hidden_tag() }}
-            {{ form.lidoRecID.label }} {{ form.lidoRecID }}<br>
+            {{ form.lidoRecID.label }} {{ form.lidoRecID(style='width: 100%;font-weight: bold;padding: 12px 20px ;margin: 8px 0;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box') }}<br>
             {{ form.title.label }} {{ form.title }}<br>
             {{ form.actorName.label }} {{ form.actorName }}<br>
             {{ form.eventDate.label }} {{ form.eventDate }}<br>

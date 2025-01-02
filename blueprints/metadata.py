@@ -132,6 +132,9 @@ def get_object_by_title():
    totalSize, mylist, xml = mp_metadata.get_object_by_title(title)
    return render_template('metadata_object_by_title.html', title=title, totalSize=totalSize, objects=mylist, xml=xml, back=back)
 
+#######################
+### MAKE LIDO XML   ###
+#######################
 @metadata_bp.route('/metadata_lido_save', methods=['GET', 'POST'])
 def metadata_lido_save():
    form = LidoSave()
@@ -221,7 +224,9 @@ def generate_lido_xml(data):
 
    return redirect(url_for('metadata.metadata'))
 
-
+#######################
+### DELETE FILES    ###
+#######################
 @metadata_bp.route("/metadata_delete")
 @login_required
 def metadata_delete():
