@@ -43,10 +43,9 @@ def read_lido_xml():
                     mp_created = CreatedDateISO
                 lidofile.close()
     except Exception as e: 
-        print(e)
         mp_inv = ""
         mp_id = ""
-        mp_name = ""
+        mp_name = "Error: " + e
         mp_created = ""
     if not os.path.exists(METADATA_path + "lido_description.xml"):
         mp_inv = ""
