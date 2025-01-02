@@ -38,16 +38,48 @@
 
         <form action="" method="post">
             {{ form.hidden_tag() }}
-            {{ form.lidoRecID.label }} {{ form.lidoRecID(style='width: 100%;font-weight: bold;padding: 12px 20px ;margin: 8px 0;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box') }}<br>
-            {{ form.title.label }} {{ form.title }}<br>
-            {{ form.actorName.label }} {{ form.actorName }}<br>
-            {{ form.eventDate.label }} {{ form.eventDate }}<br>
-            {{ form.recordID.label }} {{ form.recordID }}<br>
-            {{ form.aineistotyyppi.label }} {{ form.aineistotyyppi }}<br>
-            {{ form.paaluokka.label }} {{ form.paaluokka }}<br>
-            {{ form.erikoisluokka.label }} {{ form.erikoisluokka }}<br>
-            {{ form.inventaarionumero.label }} {{ form.inventaarionumero }}<br>
-            {{ form.submit }}
+            <table class="table">
+                <tr>
+                    <th>{{ form.lidoRecID.label }} </th>
+                    <th>{{ form.lidoRecID }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.title.label }}</th>
+                    <th>{{ form.title }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.actorName.label }}</th>
+                    <th>{{ form.actorName }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.eventDate.label }}</th>
+                    <th>{{ form.eventDate }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.recordID.label }}</th>
+                    <th>{{ form.recordID }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.aineistotyyppi.label }}</th>
+                    <th>{{ form.aineistotyyppi }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.paaluokka.label }} </th>
+                    <th>{{ form.paaluokka }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.erikoisluokka.label }}</th>
+                    <th>{{ form.erikoisluokka }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.inventaarionumero.label }}</th>
+                    <th>{{ form.inventaarionumero }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.submit }}</th>
+                    <th></th>
+                </tr>
+            </table>            
         </form>  
     </div>
     <div class="column">

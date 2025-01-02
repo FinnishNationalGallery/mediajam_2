@@ -74,10 +74,10 @@ def read_mets_lido_xml():
                     CreatedDateISO = CreatedDate.replace(" ", "T")
                     lido_created = CreatedDateISO
                 metsfile.close()
-    except:
+    except Exception as e:
         lido_inv = ""
         lido_id = ""
-        lido_name = ""
+        lido_name = "Error: " +str(e)
         lido_created = ""
     if not os.path.exists(SIP_path + "mets.xml"):
         lido_inv = ""
