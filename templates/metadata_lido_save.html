@@ -40,8 +40,16 @@
             {{ form.hidden_tag() }}
             <table class="table table is-bordered">
                 <tr>
-                    <th>{{ form.lidoRecID.label }} </th>
-                    <th>{{ form.lidoRecID(size=50) }}</th>
+                    <th>{{ form.aineistotyyppi.label }}</th>
+                    <th>{{ form.aineistotyyppi(size=50) }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.paaluokka.label }} </th>
+                    <th>{{ form.paaluokka(size=50) }}</th>
+                </tr>
+                <tr>
+                    <th>{{ form.erikoisluokka.label }}</th>
+                    <th>{{ form.erikoisluokka(size=50) }}</th>
                 </tr>
                 <tr>
                     <th>{{ form.title.label }}</th>
@@ -60,16 +68,8 @@
                     <th>{{ form.recordID(size=50) }}</th>
                 </tr>
                 <tr>
-                    <th>{{ form.aineistotyyppi.label }}</th>
-                    <th>{{ form.aineistotyyppi(size=50) }}</th>
-                </tr>
-                <tr>
-                    <th>{{ form.paaluokka.label }} </th>
-                    <th>{{ form.paaluokka(size=50) }}</th>
-                </tr>
-                <tr>
-                    <th>{{ form.erikoisluokka.label }}</th>
-                    <th>{{ form.erikoisluokka(size=50) }}</th>
+                    <th>{{ form.lidoRecID.label }} </th>
+                    <th>{{ form.lidoRecID(size=50) }}</th>
                 </tr>
                 <tr>
                     <th>{{ form.inventaarionumero.label }}</th>
