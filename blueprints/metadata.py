@@ -141,7 +141,7 @@ def metadata_lido_save():
       del data['csrf_token']  # Poista csrf-token datasta
       print("Request form data:", request.form)
       generate_lido_xml(data)
-      
+      return redirect(url_for('metadata.metadata'))
    return render_template('metadata_lido_save.html', form=form)
 
 def generate_lido_xml(data):
