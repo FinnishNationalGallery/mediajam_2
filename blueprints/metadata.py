@@ -139,6 +139,7 @@ def metadata_lido_save():
       data = form.data
       del data['submit']  # Poista submit-kenttä datasta
       del data['csrf_token']  # Poista csrf-token datasta
+      print("Request form data:", request.form)
       generate_lido_xml(data)
       
    return render_template('metadata_lido_save.html', form=form)
