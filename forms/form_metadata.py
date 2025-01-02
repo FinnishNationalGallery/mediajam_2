@@ -21,9 +21,9 @@ class LidoSave(FlaskForm):
     actorName = StringField('Creator', validators=[DataRequired()])
     eventDate = StringField('Creation time', validators=[DataRequired()])
     recordID = StringField('Record ID', validators=[DataRequired()])
-    aineistotyyppi = StringField('Classification-\"Aineistotyyppi\"', validators=[DataRequired()])
-    paaluokka = StringField('Classification-\"Pääluokka\"', validators=[DataRequired()])
-    erikoisluokka = StringField('Classification-\"Erikoisluokka\"', validators=[DataRequired()])
+    aineistotyyppi = StringField('Classification_\"Aineistotyyppi\"', validators=[DataRequired()])
+    paaluokka = StringField('Classification_\"Pääluokka\"', validators=[DataRequired()])
+    erikoisluokka = StringField('Classification_\"Erikoisluokka\"', validators=[DataRequired()])
     inventaarionumero = StringField('Inventory number', validators=[DataRequired()])
     submit = SubmitField('Generate Lido-XML')
 
