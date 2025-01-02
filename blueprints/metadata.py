@@ -142,7 +142,7 @@ def metadata_lido_save():
       data = form.data
       del data['submit']  # Poista submit-kenttä datasta
       del data['csrf_token']  # Poista csrf-token datasta
-      print("Request form data:", request.form)
+      #print("Request form data:", request.form)
       generate_lido_xml(data)
       return redirect(url_for('metadata.metadata'))
    return render_template('metadata_lido_save.html', form=form)
@@ -216,6 +216,9 @@ def generate_lido_xml(data):
    recordSource = ET.SubElement(recordWrap, "lido:recordSource")
    legalBodyName = ET.SubElement(recordSource, "lido:legalBodyName")
    ET.SubElement(legalBodyName, "lido:appellationValue").text = "Suomen valtio"
+
+   recordInfoSet = ET.SubElement(recordWrap, "lido:recordInfoSet")
+   ET.SubElement(recordInfoSet, "lido:recordMetadataDate").text = ""
 
    # Tallenna XML-tiedosto
    tree = ET.ElementTree(lidoWrap)
