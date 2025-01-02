@@ -41,7 +41,7 @@
             <table class="table table is-bordered">
                 <tr>
                     <th>{{ form.lidoRecID.label }} </th>
-                    <th>{{ form.lidoRecID }}</th>
+                    <th>{{ form.lidoRecID(style='width: 100%;box-sizing: border-box') }}</th>
                 </tr>
                 <tr>
                     <th>{{ form.title.label }}</th>
@@ -75,11 +75,8 @@
                     <th>{{ form.inventaarionumero.label }}</th>
                     <th>{{ form.inventaarionumero }}</th>
                 </tr>
-                <tr>
-                    <th>{{ form.submit }}</th>
-                    <th></th>
-                </tr>
-            </table>            
+            </table>      
+            {{ form.submit }}
         </form>  
     </div>
     <div class="column">
