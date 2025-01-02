@@ -168,19 +168,19 @@ def generate_lido_xml(data):
    classificationWrap = ET.SubElement(objectClassificationWrap, "lido:classificationWrap")
 
    classificationAineistotyyppi = ET.SubElement(classificationWrap, "lido:classification", {"lido:type": "aineistotyyppi"})
-   ET.SubElement(classificationAineistotyyppi, "lido:term", {"lido:label": "aineistotyyppi"}).text = aineistotyyppi
+   ET.SubElement(classificationAineistotyyppi, "lido:term", {"lido:label": "aineistotyyppi"}).text = data['aineistotyyppi']
 
    classificationPaaluokka = ET.SubElement(classificationWrap, "lido:classification", {"lido:type": "luokitus"})
-   ET.SubElement(classificationPaaluokka, "lido:term", {"lido:label": "pääluokka"}).text = paaluokka
+   ET.SubElement(classificationPaaluokka, "lido:term", {"lido:label": "pääluokka"}).text = data['paaluokka']
 
    classificationErikoisluokka = ET.SubElement(classificationWrap, "lido:classification", {"lido:type": "luokitus"})
-   ET.SubElement(classificationErikoisluokka, "lido:term", {"lido:label": "erikoisluokka"}).text = erikoisluokka
+   ET.SubElement(classificationErikoisluokka, "lido:term", {"lido:label": "erikoisluokka"}).text = data['erikoisluokka']
 
    # Title
    objectIdentificationWrap = ET.SubElement(descriptiveMetadata, "lido:objectIdentificationWrap")
    titleWrap = ET.SubElement(objectIdentificationWrap, "lido:titleWrap")
    titleSet = ET.SubElement(titleWrap, "lido:titleSet", {"lido:type": "nimi"})
-   ET.SubElement(titleSet, "lido:appellationValue", {"xml:lang": "fi"}).text = title
+   ET.SubElement(titleSet, "lido:appellationValue", {"xml:lang": "fi"}).text = data['title']
 
    # Repository Wrap
    repositoryWrap = ET.SubElement(objectIdentificationWrap, "lido:repositoryWrap")
@@ -188,7 +188,7 @@ def generate_lido_xml(data):
    repositoryName = ET.SubElement(repositorySet, "lido:repositoryName")
    legalBodyName = ET.SubElement(repositoryName, "lido:legalBodyName")
    ET.SubElement(legalBodyName, "lido:appellationValue").text = "Kansallisgalleria / Nykytaiteen museo Kiasma"
-   ET.SubElement(repositorySet, "lido:workID", {"lido:type": "inventaarionumero"}).text = inventaarionumero
+   ET.SubElement(repositorySet, "lido:workID", {"lido:type": "inventaarionumero"}).text = data['inventaarionumero']
 
    # Event
    eventWrap = ET.SubElement(descriptiveMetadata, "lido:eventWrap")
@@ -200,15 +200,15 @@ def generate_lido_xml(data):
    actorInRole = ET.SubElement(eventActor, "lido:actorInRole")
    actor = ET.SubElement(actorInRole, "lido:actor")
    nameActorSet = ET.SubElement(actor, "lido:nameActorSet")
-   ET.SubElement(nameActorSet, "lido:appellationValue").text = actorName
+   ET.SubElement(nameActorSet, "lido:appellationValue").text = data['actorName']
 
    eventDateElement = ET.SubElement(event, "lido:eventDate")
-   ET.SubElement(eventDateElement, "lido:displayDate").text = eventDate
+   ET.SubElement(eventDateElement, "lido:displayDate").text = data['eventDate']
 
    # Administrative Metadata
    administrativeMetadata = ET.SubElement(lido, "lido:administrativeMetadata", {"xml:lang": "fi"})
    recordWrap = ET.SubElement(administrativeMetadata, "lido:recordWrap")
-   ET.SubElement(recordWrap, "lido:recordID", {"lido:type": "MuseumPlusObjectId"}).text = recordID
+   ET.SubElement(recordWrap, "lido:recordID", {"lido:type": "MuseumPlusObjectId"}).text = data['recordID']
 
    recordSource = ET.SubElement(recordWrap, "lido:recordSource")
    legalBodyName = ET.SubElement(recordSource, "lido:legalBodyName")
