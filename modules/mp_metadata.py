@@ -52,7 +52,13 @@ def read_lido_xml():
         mp_id = ""
         mp_name = ""
         mp_created = ""
-    return mp_inv, mp_id, mp_name, mp_created
+    data = {
+        "mp_inv": mp_inv,
+        "mp_id": mp_id,
+        "mp_name": mp_name,
+        "mp_created": mp_created
+    }
+    return data #mp_inv, mp_id, mp_name, mp_created
 
 def read_mets_lido_xml():
     try:

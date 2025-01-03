@@ -8,7 +8,6 @@ from markupsafe import Markup
 import modules.mp_metadata as mp_metadata
 from forms.form_metadata import *
 import xml.etree.ElementTree as ET
-from werkzeug.datastructures import MultiDict
 
 metadata_bp = Blueprint('metadata', __name__)
 
@@ -72,11 +71,11 @@ def metadata_load_attachment():
 @metadata_bp.route("/metadata_read_lido_xml")
 @login_required
 def metadata_read_lido_xml():
-   mp_inv, mp_id, mp_name, mp_created = mp_metadata.read_lido_xml()
-   session['mp_inv'] = mp_inv
-   session['mp_id'] = mp_id
-   session['mp_name'] = mp_name
-   session['mp_created'] = mp_created
+   data = mp_metadata.read_lido_xml()
+   session['mp_inv'] = data.get("mp_inv")
+   session['mp_id'] = data.get("mp_id")
+   session['mp_name'] = data.get("mp_name")
+   session['mp_created'] = data.get("mp_created")
    files = os.listdir(METADATA_path)
    return render_template('metadata.html', files=files, environment=mp_metadata.MP_ENV, METADATA_path=METADATA_path)
    #return render_template('metadata_read_lido.html', mp_inv=mp_inv, mp_id=mp_id, mp_created=mp_created)
@@ -140,8 +139,6 @@ def get_object_by_title():
 def metadata_lido_save():
    form = LidoSave()
    if form.validate_on_submit():
-      multidict = MultiDict()
-      multidict.add('key', 'another_value')
       data = form.data
       del data['submit']  # Poista submit-kenttä datasta
       del data['csrf_token']  # Poista csrf-token datasta
