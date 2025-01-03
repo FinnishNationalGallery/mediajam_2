@@ -35,11 +35,11 @@ def read_lido_xml():
                 classifications = xml_obj['lido:lidoWrap']['lido:lido']['lido:descriptiveMetadata']['lido:objectClassificationWrap']['lido:classificationWrap']['lido:classification']
                 for classification in classifications:
                     if classification['@lido:type'] == 'aineistotyyppi':
-                        classification1 = classification['lido:term']
+                        classification1 = classification['lido:term']['#text']
                     elif classification['@lido:type'] == 'luokitus' and classification['lido:term']['@lido:label'] == 'pääluokka':
-                        classification2 = classification['lido:term']
+                        classification2 = classification['lido:term']['#text']
                     elif classification['@lido:type'] == 'luokitus' and classification['lido:term']['@lido:label'] == 'erikoisluokka':
-                        classification3 = classification['lido:term']
+                        classification3 = classification['lido:term']['#text']
 
 
                 mp_name = xml_obj['lido:lidoWrap']['lido:lido']['lido:descriptiveMetadata']['lido:objectIdentificationWrap']['lido:titleWrap']['lido:titleSet']['lido:appellationValue']['#text']
@@ -59,7 +59,7 @@ def read_lido_xml():
                 data = {
                     "classification1": classification1,
                     "classification2": classification2,
-                    "classification2": classification3,
+                    "classification3": classification3,
                     "mp_inv": mp_inv,
                     "mp_id": mp_id,
                     "mp_name": mp_name,
