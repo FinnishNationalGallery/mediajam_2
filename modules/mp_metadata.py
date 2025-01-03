@@ -42,22 +42,30 @@ def read_lido_xml():
                     CreatedDateISO = CreatedDate.replace(" ", "T")
                     mp_created = CreatedDateISO
                 lidofile.close()
+                ### 
+                data = {
+                    "mp_inv": mp_inv,
+                    "mp_id": mp_id,
+                    "mp_name": mp_name,
+                    "mp_created": mp_created
+                }
     except Exception as e: 
-        mp_inv = ""
-        mp_id = ""
-        mp_name = "Error: " +str(e)
-        mp_created = ""
+        data = {
+            "mp_name": "Error: " + str(e)
+        }
+        #mp_inv = ""
+        #mp_id = ""
+        #mp_name = "Error: " +str(e)
+        #mp_created = ""
     if not os.path.exists(METADATA_path + "lido_description.xml"):
-        mp_inv = ""
-        mp_id = ""
-        mp_name = ""
-        mp_created = ""
-    data = {
-        "mp_inv": mp_inv,
-        "mp_id": mp_id,
-        "mp_name": mp_name,
-        "mp_created": mp_created
-    }
+        data = {
+            "mp_name": "No file detected!"
+        }
+        #mp_inv = ""
+        #mp_id = ""
+        #mp_name = ""
+        #mp_created = ""
+
     return data #mp_inv, mp_id, mp_name, mp_created
 
 def read_mets_lido_xml():
