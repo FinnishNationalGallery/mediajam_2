@@ -31,6 +31,17 @@ def read_lido_xml():
                 filepath = METADATA_path + file
                 lidofile = open(filepath, "r")
                 xml_obj = xmltodict.parse(lidofile.read())
+
+                classifications = xml_obj['lido:lidoWrap']['lido:lido']['lido:descriptiveMetadata']['lido:objectClassificationWrap']['lido:classificationWrap']['lido:classification']
+                for classification in classifications:
+                    if classification['@lido:type'] == 'aineistotyyppi':
+                        classification1 = classification['lido:term']
+                    elif classification['@lido:type'] == 'luokitus' and classification['lido:term']['@lido:label'] == 'pääluokka':
+                        classification2 = classification['lido:term']
+                    elif classification['@lido:type'] == 'luokitus' and classification['lido:term']['@lido:label'] == 'erikoisluokka':
+                        classification3 = classification['lido:term']
+
+
                 mp_name = xml_obj['lido:lidoWrap']['lido:lido']['lido:descriptiveMetadata']['lido:objectIdentificationWrap']['lido:titleWrap']['lido:titleSet']['lido:appellationValue']['#text']
                 recordWrap = xml_obj['lido:lidoWrap']['lido:lido']['lido:administrativeMetadata']['lido:recordWrap']
                 mp_inv = xml_obj['lido:lidoWrap']['lido:lido']['lido:lidoRecID']['#text']
@@ -46,6 +57,9 @@ def read_lido_xml():
                 lidofile.close()
                 ### 
                 data = {
+                    "classification1": classification1,
+                    "classification2": classification2,
+                    "classification2": classification3,
                     "mp_inv": mp_inv,
                     "mp_id": mp_id,
                     "mp_name": mp_name,
