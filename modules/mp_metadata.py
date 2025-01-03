@@ -66,16 +66,6 @@ def read_lido_xml():
                 else:
                     # Jos 'lido:recordInfoSet' puuttuu kokonaan
                     mp_created = datetime.datetime.now().isoformat()
-
-                #print("Holy SHIT!")
-                #if recordWrap['lido:recordInfoSet']['lido:recordMetadataDate'] == None:
-                    #mp_created = datetime.datetime.now().isoformat()
-                #elif recordWrap['lido:recordInfoSet']['lido:recordMetadataDate']['#text'] == "":
-                    #mp_created = datetime.datetime.now().isoformat()
-                #else:
-                    #CreatedDate = recordWrap['lido:recordInfoSet']['lido:recordMetadataDate']
-                    #CreatedDateISO = CreatedDate.replace(" ", "T")
-                    #mp_created = CreatedDateISO
                     
                 lidofile.close()
                 ### 
