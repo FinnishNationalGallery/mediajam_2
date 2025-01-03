@@ -46,6 +46,7 @@ def read_lido_xml():
                 recordWrap = xml_obj['lido:lidoWrap']['lido:lido']['lido:administrativeMetadata']['lido:recordWrap']
                 mp_inv = xml_obj['lido:lidoWrap']['lido:lido']['lido:lidoRecID']['#text']
                 mp_id = recordWrap['lido:recordID']['#text']
+                print("Holy SHIT!")
                 if recordWrap['lido:recordInfoSet']['lido:recordMetadataDate'] == None:
                     mp_created = datetime.datetime.now().isoformat()
                     print("if")
