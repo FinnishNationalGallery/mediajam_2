@@ -45,6 +45,9 @@ def read_lido_xml():
                 mp_name = xml_obj['lido:lidoWrap']['lido:lido']['lido:descriptiveMetadata']['lido:objectIdentificationWrap']['lido:titleWrap']['lido:titleSet']['lido:appellationValue']['#text']
 
                 recordWrap = xml_obj['lido:lidoWrap']['lido:lido']['lido:administrativeMetadata']['lido:recordWrap']
+                mp_inv = xml_obj['lido:lidoWrap']['lido:lido']['lido:lidoRecID']['#text']
+                mp_id = recordWrap['lido:recordID']['#text']
+
                 # Tarkista, onko 'lido:recordInfoSet' olemassa
                 recordInfoSet = recordWrap.get('lido:recordInfoSet')
                 if recordInfoSet:
@@ -64,9 +67,6 @@ def read_lido_xml():
                     # Jos 'lido:recordInfoSet' puuttuu kokonaan
                     mp_created = datetime.datetime.now().isoformat()
 
-                #recordWrap = xml_obj['lido:lidoWrap']['lido:lido']['lido:administrativeMetadata']['lido:recordWrap']
-                #mp_inv = xml_obj['lido:lidoWrap']['lido:lido']['lido:lidoRecID']['#text']
-                #mp_id = recordWrap['lido:recordID']['#text']
                 #print("Holy SHIT!")
                 #if recordWrap['lido:recordInfoSet']['lido:recordMetadataDate'] == None:
                     #mp_created = datetime.datetime.now().isoformat()
