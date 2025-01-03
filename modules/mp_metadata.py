@@ -44,6 +44,7 @@ def read_lido_xml():
 
                 mp_name = xml_obj['lido:lidoWrap']['lido:lido']['lido:descriptiveMetadata']['lido:objectIdentificationWrap']['lido:titleWrap']['lido:titleSet']['lido:appellationValue']['#text']
 
+                recordWrap = xml_obj['lido:lidoWrap']['lido:lido']['lido:administrativeMetadata']['lido:recordWrap']
                 # Tarkista, onko 'lido:recordInfoSet' olemassa
                 recordInfoSet = recordWrap.get('lido:recordInfoSet')
                 if recordInfoSet:
