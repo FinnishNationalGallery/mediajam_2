@@ -138,10 +138,10 @@ def get_object_by_title():
 @metadata_bp.route('/metadata_lido_save', methods=['GET', 'POST'])
 def metadata_lido_save():
    form = LidoSave()
-   data = mp_metadata.read_lido_xml()
-   form.inventaarionumero.data  = data.get("mp_inv", "")
-   form.recordID.data  = data.get("mp_id", "")
-   form.title.data  = data.get("mp_name", "")
+   data2 = mp_metadata.read_lido_xml()
+   form.inventaarionumero.data  = data2.get("mp_inv", "")
+   form.recordID.data  = data2.get("mp_id", "")
+   form.title.data  = data2.get("mp_name", "")
    if form.validate_on_submit():
       data = form.data
       del data['submit']  # Poista submit-kenttä datasta
