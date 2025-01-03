@@ -138,7 +138,7 @@ def get_object_by_title():
 @metadata_bp.route('/metadata_lido_save', methods=['GET', 'POST'])
 def metadata_lido_save():
    form = LidoSave()
-   form.aineistotyyppi = "Huh Heijaa!"
+   form.aineistotyyppi.data = "Huh Heijaa!"
    if form.validate_on_submit():
       data = form.data
       del data['submit']  # Poista submit-kenttä datasta
