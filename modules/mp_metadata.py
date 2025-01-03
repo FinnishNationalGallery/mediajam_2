@@ -53,18 +53,11 @@ def read_lido_xml():
         data = {
             "mp_name": "Error: " + str(e)
         }
-        #mp_inv = ""
-        #mp_id = ""
-        #mp_name = "Error: " +str(e)
-        #mp_created = ""
+
     if not os.path.exists(METADATA_path + "lido_description.xml"):
         data = {
             "mp_name": "No file detected!"
         }
-        #mp_inv = ""
-        #mp_id = ""
-        #mp_name = ""
-        #mp_created = ""
 
     return data #mp_inv, mp_id, mp_name, mp_created
 
