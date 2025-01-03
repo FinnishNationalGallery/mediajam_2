@@ -24,5 +24,6 @@ class LidoSave(FlaskForm):
     mp_name = StringField('Title', validators=[DataRequired()])
     mp_actor = StringField('Creator', validators=[DataRequired()])
     mp_creation = StringField('Creation time', validators=[DataRequired()])
+    mp_created = StringField('Record creation time')
     submit = SubmitField('Generate Lido-XML')
 
