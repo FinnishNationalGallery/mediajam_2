@@ -149,16 +149,17 @@ def metadata_lido_save():
 
 @metadata_bp.route('/metadata_lido_edit', methods=['GET', 'POST'])
 def metadata_lido_edit():
-   form = LidoSave()
    data2 = mp_metadata.read_lido_xml()
-   form.classification1.data  = data2.get("classification1", "")
-   form.classification2.data  = data2.get("classification2", "")
-   form.classification3.data  = data2.get("classification3", "")
-   form.mp_inv.data  = data2.get("mp_inv", "")
-   form.mp_id.data  = data2.get("mp_id", "")
-   form.mp_name.data  = data2.get("mp_name", "")
-   form.mp_actor.data  = data2.get("mp_actor", "actor")
-   form.mp_creation.data  = data2.get("mp_creation", "creation")
+   form = LidoSave(data=data2)
+
+   #form.classification1.data  = data2.get("classification1", "")
+   #form.classification2.data  = data2.get("classification2", "")
+   #form.classification3.data  = data2.get("classification3", "")
+   #form.mp_inv.data  = data2.get("mp_inv", "")
+   #form.mp_id.data  = data2.get("mp_id", "")
+   #form.mp_name.data  = data2.get("mp_name", "")
+   #form.mp_actor.data  = data2.get("mp_actor", "actor")
+   #form.mp_creation.data  = data2.get("mp_creation", "creation")
 
    if form.validate_on_submit():
       data = form.data
