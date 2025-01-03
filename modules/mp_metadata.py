@@ -43,23 +43,38 @@ def read_lido_xml():
 
 
                 mp_name = xml_obj['lido:lidoWrap']['lido:lido']['lido:descriptiveMetadata']['lido:objectIdentificationWrap']['lido:titleWrap']['lido:titleSet']['lido:appellationValue']['#text']
-                recordWrap = xml_obj['lido:lidoWrap']['lido:lido']['lido:administrativeMetadata']['lido:recordWrap']
-                mp_inv = xml_obj['lido:lidoWrap']['lido:lido']['lido:lidoRecID']['#text']
-                mp_id = recordWrap['lido:recordID']['#text']
-                print("Holy SHIT!")
-                if recordWrap['lido:recordInfoSet']['lido:recordMetadataDate'] == None:
-                    print("if")
-                    mp_created = datetime.datetime.now().isoformat()
-                    
-                elif recordWrap['lido:recordInfoSet']['lido:recordMetadataDate']['#text'] == "":
-                    print("elif")
-                    mp_created = datetime.datetime.now().isoformat()
-                    
+
+                # Tarkista, onko 'lido:recordInfoSet' olemassa
+                recordInfoSet = recordWrap.get('lido:recordInfoSet')
+                if recordInfoSet:
+                    # Tarkista, onko 'lido:recordMetadataDate' olemassa
+                    recordMetadataDate = recordInfoSet.get('lido:recordMetadataDate')
+                    if not recordMetadataDate:  # Jos avain puuttuu tai sen arvo on None
+                        mp_created = datetime.datetime.now().isoformat()
+                    elif isinstance(recordMetadataDate, dict) and recordMetadataDate.get('#text', '').strip() == "":
+                        # Jos sisältö on sanakirja, mutta tekstikenttä on tyhjä
+                        mp_created = datetime.datetime.now().isoformat()
+                    else:
+                        # Jos sisältö on tekstiä tai sanakirjan '#text'-avain sisältää arvoja
+                        CreatedDate = recordMetadataDate if isinstance(recordMetadataDate, str) else recordMetadataDate.get('#text', '').strip()
+                        CreatedDateISO = CreatedDate.replace(" ", "T")
+                        mp_created = CreatedDateISO
                 else:
-                    print("else")
-                    CreatedDate = recordWrap['lido:recordInfoSet']['lido:recordMetadataDate']
-                    CreatedDateISO = CreatedDate.replace(" ", "T")
-                    mp_created = CreatedDateISO
+                    # Jos 'lido:recordInfoSet' puuttuu kokonaan
+                    mp_created = datetime.datetime.now().isoformat()
+
+                #recordWrap = xml_obj['lido:lidoWrap']['lido:lido']['lido:administrativeMetadata']['lido:recordWrap']
+                #mp_inv = xml_obj['lido:lidoWrap']['lido:lido']['lido:lidoRecID']['#text']
+                #mp_id = recordWrap['lido:recordID']['#text']
+                #print("Holy SHIT!")
+                #if recordWrap['lido:recordInfoSet']['lido:recordMetadataDate'] == None:
+                    #mp_created = datetime.datetime.now().isoformat()
+                #elif recordWrap['lido:recordInfoSet']['lido:recordMetadataDate']['#text'] == "":
+                    #mp_created = datetime.datetime.now().isoformat()
+                #else:
+                    #CreatedDate = recordWrap['lido:recordInfoSet']['lido:recordMetadataDate']
+                    #CreatedDateISO = CreatedDate.replace(" ", "T")
+                    #mp_created = CreatedDateISO
                     
                 lidofile.close()
                 ### 
