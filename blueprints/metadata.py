@@ -157,8 +157,8 @@ def metadata_lido_edit():
    form.mp_inv.data  = data2.get("mp_inv", "")
    form.mp_id.data  = data2.get("mp_id", "")
    form.mp_name.data  = data2.get("mp_name", "")
-   form.mp_actor.data  = data2.get("mp_actor", "")
-   form.mp_creation.data  = data2.get("mp_creation", "")
+   form.mp_actor.data  = data2.get("mp_actor", "actor")
+   form.mp_creation.data  = data2.get("mp_creation", "creation")
 
    if form.validate_on_submit():
       data = form.data
