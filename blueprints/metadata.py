@@ -8,6 +8,7 @@ from markupsafe import Markup
 import modules.mp_metadata as mp_metadata
 from forms.form_metadata import *
 import xml.etree.ElementTree as ET
+from werkzeug.datastructures import MultiDict
 
 metadata_bp = Blueprint('metadata', __name__)
 
@@ -139,6 +140,8 @@ def get_object_by_title():
 def metadata_lido_save():
    form = LidoSave()
    if form.validate_on_submit():
+      multidict = MultiDict()
+      multidict.add('key', 'another_value')
       data = form.data
       del data['submit']  # Poista submit-kenttä datasta
       del data['csrf_token']  # Poista csrf-token datasta
