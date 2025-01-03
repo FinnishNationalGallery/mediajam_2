@@ -151,9 +151,9 @@ def metadata_lido_save():
 def metadata_lido_edit():
    form = LidoSave()
    data2 = mp_metadata.read_lido_xml()
-   form.inventaarionumero.data  = data2.get("mp_inv", "")
-   form.recordID.data  = data2.get("mp_id", "")
-   form.title.data  = data2.get("mp_name", "")
+   form.mp_inv.data  = data2.get("mp_inv", "")
+   form.mp_id.data  = data2.get("mp_id", "")
+   form.mp_name.data  = data2.get("mp_name", "")
 
    if form.validate_on_submit():
       data = form.data

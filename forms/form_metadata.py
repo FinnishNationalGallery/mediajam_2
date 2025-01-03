@@ -16,14 +16,13 @@ class Settings(FlaskForm):
     submit = SubmitField('Save')
 
 class LidoSave(FlaskForm):
-    lidoRecID = StringField('Lido Record ID', validators=[DataRequired()])
-    title = StringField('Title', validators=[DataRequired()])
-    actorName = StringField('Creator', validators=[DataRequired()])
-    eventDate = StringField('Creation time', validators=[DataRequired()])
-    recordID = StringField('Record ID', validators=[DataRequired()])
-    aineistotyyppi = StringField('Classification \"Aineistotyyppi\"', validators=[DataRequired()])
-    paaluokka = StringField('Classification \"Pääluokka\"', validators=[DataRequired()])
-    erikoisluokka = StringField('Classification \"Erikoisluokka\"', validators=[DataRequired()])
-    inventaarionumero = StringField('Inventory number', validators=[DataRequired()])
+    classification1 = StringField('Classification \"Aineistotyyppi\"', validators=[DataRequired()])
+    classification2 = StringField('Classification \"Pääluokka\"', validators=[DataRequired()])
+    classification3 = StringField('Classification \"Erikoisluokka\"', validators=[DataRequired()])
+    mp_inv = StringField('Inventory number', validators=[DataRequired()])
+    mp_id = StringField('Object ID', validators=[DataRequired()])
+    mp_name = StringField('Title', validators=[DataRequired()])
+    mp_actor = StringField('Creator', validators=[DataRequired()])
+    mp_creation = StringField('Creation time', validators=[DataRequired()])
     submit = SubmitField('Generate Lido-XML')
 
