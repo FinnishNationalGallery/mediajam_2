@@ -1,5 +1,6 @@
 import os
 import shutil
+import datetime
 from flask import Blueprint, render_template, request, url_for, flash, redirect, send_file, session, jsonify
 from flask_login import login_required, current_user
 from utils import logfile_output, logfile_outerror, logfile_datanative, subprocess_args, get_diskinfo
@@ -138,6 +139,7 @@ def get_object_by_title():
 @metadata_bp.route('/metadata_lido_save', methods=['GET', 'POST'])
 def metadata_lido_save():
    form = LidoSave()
+   form.mp_created.data = datetime.datetime.now().isoformat()
    if form.validate_on_submit():
       data = form.data
       del data['submit']  # Poista submit-kenttä datasta
