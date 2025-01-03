@@ -51,7 +51,7 @@ def read_lido_xml():
                 elif recordWrap['lido:recordInfoSet']['lido:recordMetadataDate']['#text'] == "":
                     mp_created = datetime.datetime.now().isoformat()
                 else:
-                    CreatedDate = recordWrap['lido:recordInfoSet']['lido:recordMetadataDate']
+                    CreatedDate = recordWrap['lido:recordInfoSet']['lido:recordMetadataDate']['#text'] 
                     CreatedDateISO = CreatedDate.replace(" ", "T")
                     mp_created = CreatedDateISO
                 lidofile.close()
