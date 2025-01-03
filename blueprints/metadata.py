@@ -138,10 +138,23 @@ def get_object_by_title():
 @metadata_bp.route('/metadata_lido_save', methods=['GET', 'POST'])
 def metadata_lido_save():
    form = LidoSave()
+   if form.validate_on_submit():
+      data = form.data
+      del data['submit']  # Poista submit-kenttä datasta
+      del data['csrf_token']  # Poista csrf-token datasta
+      #print("Request form data:", request.form)
+      generate_lido_xml(data)
+      return redirect(url_for('metadata.metadata'))
+   return render_template('metadata_lido_save.html', form=form)
+
+@metadata_bp.route('/metadata_lido_edit', methods=['GET', 'POST'])
+def metadata_lido_edit():
+   form = LidoSave()
    data2 = mp_metadata.read_lido_xml()
    form.inventaarionumero.data  = data2.get("mp_inv", "")
    form.recordID.data  = data2.get("mp_id", "")
    form.title.data  = data2.get("mp_name", "")
+
    if form.validate_on_submit():
       data = form.data
       del data['submit']  # Poista submit-kenttä datasta
