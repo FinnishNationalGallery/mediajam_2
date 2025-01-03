@@ -37,6 +37,8 @@ def read_lido_xml():
                 mp_id = recordWrap['lido:recordID']['#text']
                 if recordWrap['lido:recordInfoSet']['lido:recordMetadataDate'] == None:
                     mp_created = datetime.datetime.now().isoformat()
+                elif recordWrap['lido:recordInfoSet']['lido:recordMetadataDate'] == "":
+                    mp_created = datetime.datetime.now().isoformat()
                 else:
                     CreatedDate = recordWrap['lido:recordInfoSet']['lido:recordMetadataDate']
                     CreatedDateISO = CreatedDate.replace(" ", "T")
@@ -59,7 +61,7 @@ def read_lido_xml():
             "mp_name": "No file detected!"
         }
 
-    return data #mp_inv, mp_id, mp_name, mp_created
+    return data
 
 def read_mets_lido_xml():
     try:
