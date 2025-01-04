@@ -26,6 +26,9 @@ MP_PASS = tuple(MP_PASSI.split(","))
 def read_lido_xml():
     try:
         files = os.listdir(METADATA_path)
+        classification1 = ""
+        classification2 = ""
+        classification3 = ""
         for file in files:
             if "lido_description.xml" in file:
                 filepath = METADATA_path + file
