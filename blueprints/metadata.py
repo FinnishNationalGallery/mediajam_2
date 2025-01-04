@@ -77,7 +77,6 @@ def metadata_read_lido_xml():
    session['mp_id'] = data.get("mp_id", "No value")
    session['mp_name'] = data.get("mp_name", "No value")
    session['mp_created'] = data.get("mp_created", "No value")
-   print(session['mp_created'])
    files = os.listdir(METADATA_path)
    return render_template('metadata.html', files=files, environment=mp_metadata.MP_ENV, METADATA_path=METADATA_path)
    #return render_template('metadata_read_lido.html', mp_inv=mp_inv, mp_id=mp_id, mp_created=mp_created)
