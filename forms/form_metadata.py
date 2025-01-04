@@ -16,9 +16,9 @@ class Settings(FlaskForm):
     submit = SubmitField('Save')
 
 class LidoSave(FlaskForm):
-    classification1 = StringField('Classification \"Aineistotyyppi\"', validators=[DataRequired()])
+    classification1 = StringField('Classification \"Aineistotyyppi\"', default="Taideteos", validators=[DataRequired()])
     classification2 = StringField('Classification \"Pääluokka\"', validators=[DataRequired()])
-    classification3 = StringField('Classification \"Erikoisluokka\"', validators=[DataRequired()])
+    classification3 = StringField('Classification \"Erikoisluokka\"')
     mp_inv = StringField('Inventory number', validators=[DataRequired()])
     mp_id = StringField('Object ID', validators=[DataRequired()])
     mp_name = StringField('Title', validators=[DataRequired()])
