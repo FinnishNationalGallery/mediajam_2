@@ -191,8 +191,9 @@ def generate_lido_xml(data):
    classificationPaaluokka = ET.SubElement(classificationWrap, "lido:classification", {"lido:type": "luokitus"})
    ET.SubElement(classificationPaaluokka, "lido:term", {"lido:label": "pääluokka"}).text = data['classification2']
 
-   classificationErikoisluokka = ET.SubElement(classificationWrap, "lido:classification", {"lido:type": "luokitus"})
-   ET.SubElement(classificationErikoisluokka, "lido:term", {"lido:label": "erikoisluokka"}).text = data['classification3']
+   if len(data['classification3']) > 1:
+      classificationErikoisluokka = ET.SubElement(classificationWrap, "lido:classification", {"lido:type": "luokitus"})
+      ET.SubElement(classificationErikoisluokka, "lido:term", {"lido:label": "erikoisluokka"}).text = data['classification3']
 
    # Title
    objectIdentificationWrap = ET.SubElement(descriptiveMetadata, "lido:objectIdentificationWrap")
