@@ -22,8 +22,119 @@ else:
     MP_ENV = 'MuseumPlus TESTING ENVIRONMENT'
 MP_PASS = tuple(MP_PASSI.split(","))
 
-
 def read_lido_xml():
+    try:
+        files = os.listdir(METADATA_path)
+        classification1 = ""
+        classification2 = ""
+        classification3 = ""
+        for file in files:
+            if "lido_description.xml" in file:
+                filepath = METADATA_path + file
+                lidofile = open(filepath, "r")
+                xml_obj = xmltodict.parse(lidofile.read())
+                # Määritellään nimiavaruuskartta "lido" -> "http://www.lido-schema.org"
+                NS = {'lido': 'http://www.lido-schema.org'}
+                # Luodaan ElementTree-olio
+                root = et.fromstring(xml_obj)
+
+                # 1) lidoRecID (teksti) + attribuutit (source, type)
+                lido_rec_id_elem = root.find('.//lido:lidoRecID', NS)
+                lido_rec_id = lido_rec_id_elem.text if lido_rec_id_elem is not None else None
+                lido_rec_id_source = lido_rec_id_elem.get('{http://www.lido-schema.org}source') if lido_rec_id_elem is not None else None
+                lido_rec_id_type = lido_rec_id_elem.get('{http://www.lido-schema.org}type') if lido_rec_id_elem is not None else None
+
+                # 2) objectWorkType (esim. "Taideteos")
+                object_work_type_elem = root.find('.//lido:objectWorkTypeWrap/lido:objectWorkType/lido:term', NS)
+                object_work_type = object_work_type_elem.text if object_work_type_elem is not None else None
+
+                # 3) classification-arvot:
+                #    - aineistotyyppi = "Taideteos"
+                #    - pääluokka = "mediataide"
+                #    - erikoisluokka = "videoinstallaatio"
+                classification_ain_elem = root.find('.//lido:classification[@lido:type="aineistotyyppi"]/lido:term', NS)
+                classification_ain = classification_ain_elem.text if classification_ain_elem is not None else None
+
+                classification_paa_elem = root.find('.//lido:classification[@lido:type="luokitus"]/lido:term[@lido:label="pääluokka"]', NS)
+                classification_paa = classification_paa_elem.text if classification_paa_elem is not None else None
+
+                classification_erik_elem = root.find('.//lido:classification[@lido:type="luokitus"]/lido:term[@lido:label="erikoisluokka"]', NS)
+                classification_erik = classification_erik_elem.text if classification_erik_elem is not None else None
+
+                # 4) Title ("Pyhiinvaellus")
+                title_elem = root.find('.//lido:titleWrap/lido:titleSet/lido:appellationValue', NS)
+                title = title_elem.text if title_elem is not None else None
+
+                # 5) Repository (esim. "Kansallisgalleria / Nykytaiteen museo Kiasma")
+                repository_elem = root.find('.//lido:repositorySet/lido:repositoryName/lido:legalBodyName/lido:appellationValue', NS)
+                repository = repository_elem.text if repository_elem is not None else None
+
+                # 6) WorkID ("N-2005-30")
+                work_id_elem = root.find('.//lido:repositorySet/lido:workID', NS)
+                work_id = work_id_elem.text if work_id_elem is not None else None
+
+                # 7) eventType ("valmistus")
+                event_type_elem = root.find('.//lido:event/lido:eventType/lido:term', NS)
+                event_type = event_type_elem.text if event_type_elem is not None else None
+
+                # 8) eventActor ("Rekula, Heli, Artist")
+                event_actor_elem = root.find('.//lido:eventActor/lido:actorInRole/lido:actor/lido:nameActorSet/lido:appellationValue', NS)
+                event_actor = event_actor_elem.text if event_actor_elem is not None else None
+
+                # 9) eventDate ("valmistusaika: 1996 - 1998")
+                event_date_elem = root.find('.//lido:eventDate/lido:displayDate', NS)
+                event_date = event_date_elem.text if event_date_elem is not None else None
+
+                # 10) recordID (MuseumPlusObjectId) = "624177"
+                record_id_elem = root.find('.//lido:recordWrap/lido:recordID[@lido:type="MuseumPlusObjectId"]', NS)
+                record_id = record_id_elem.text if record_id_elem is not None else None
+
+                # 11) recordType ("objekti")
+                record_type_elem = root.find('.//lido:recordWrap/lido:recordType/lido:term', NS)
+                record_type = record_type_elem.text if record_type_elem is not None else None
+
+                # 12) recordSource ("Suomen valtio")
+                record_source_elem = root.find('.//lido:recordWrap/lido:recordSource/lido:legalBodyName/lido:appellationValue', NS)
+                record_source = record_source_elem.text if record_source_elem is not None else None
+
+                # 13) recordMetadataDate ("2018-04-12 13:43:47.426")
+                record_metadata_date_elem = root.find('.//lido:recordWrap/lido:recordInfoSet/lido:recordMetadataDate', NS)
+                record_metadata_date = record_metadata_date_elem.text if record_metadata_date_elem is not None else None
+                ###
+                lidofile.close()
+                ### 
+                data = {
+                    "lidoRecID": lido_rec_id,
+                    "lidoRecID_source": lido_rec_id_source,
+                    "lidoRecID_type": lido_rec_id_type,
+                    "objectWorkType": object_work_type,
+                    "classification1": classification_ain,
+                    "classification2": classification_paa,
+                    "classification3": classification_erik,
+                    "mp_name": title,
+                    "mp_repository": repository,
+                    "mp_inv": work_id,
+                    "eventType": event_type,
+                    "mp_actor": event_actor,
+                    "mp_created": event_date,
+                    "mp_id": record_id,
+                    "recordType": record_type,
+                    "mp_owner": record_source,
+                    "mp_created": record_metadata_date
+                }
+    except Exception as e: 
+        data = {
+            "mp_name": "Error: " + str(e)
+        }
+
+    if not os.path.exists(METADATA_path + "lido_description.xml"):
+        data = {
+            "mp_name": "No file detected!"
+        }
+
+    return data
+
+def read_lido_xml_backup():
     try:
         files = os.listdir(METADATA_path)
         classification1 = ""
