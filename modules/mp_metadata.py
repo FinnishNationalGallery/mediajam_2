@@ -117,7 +117,7 @@ def read_lido_xml():
                     "mp_inv": work_id,
                     "eventType": event_type,
                     "mp_actor": event_actor,
-                    "mp_created": event_date,
+                    "mp_creation": event_date,
                     "mp_id": record_id,
                     "recordType": record_type,
                     "mp_owner": record_source,
