@@ -101,6 +101,9 @@ def read_lido_xml():
                 # 13) recordMetadataDate ("2018-04-12 13:43:47.426")
                 record_metadata_date_elem = root.find('.//lido:recordWrap/lido:recordInfoSet/lido:recordMetadataDate', NS)
                 record_metadata_date = record_metadata_date_elem.text if record_metadata_date_elem is not None else None
+                if record_metadata_date_elem is not None:
+                    CreatedDateISO = record_metadata_date_elem.replace(" ", "T")
+                    record_metadata_date_elem = CreatedDateISO
                 ###
                 lidofile.close()
                 ### 
