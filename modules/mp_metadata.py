@@ -50,7 +50,7 @@ def read_lido_xml():
                 recordWrap = xml_obj['lido:lidoWrap']['lido:lido']['lido:administrativeMetadata']['lido:recordWrap']
                 mp_inv = xml_obj['lido:lidoWrap']['lido:lido']['lido:lidoRecID']['#text']
                 mp_id = recordWrap['lido:recordID']['#text']
-                mp_owner = recordWrap['lido:recordSource']['lido:legalBodyName']['lido:appellationValue']['#text']
+                mp_owner = recordWrap['lido:recordSource']['lido:legalBodyName']['lido:appellationValue']
 
                 # Tarkista, onko 'lido:recordInfoSet' olemassa
                 recordInfoSet = recordWrap.get('lido:recordInfoSet')
