@@ -206,7 +206,7 @@ def generate_lido_xml(data):
    repositorySet = ET.SubElement(repositoryWrap, "lido:repositorySet", {"lido:type": "haltija"})
    repositoryName = ET.SubElement(repositorySet, "lido:repositoryName")
    legalBodyName = ET.SubElement(repositoryName, "lido:legalBodyName")
-   ET.SubElement(legalBodyName, "lido:appellationValue").text = "Kansallisgalleria / Nykytaiteen museo Kiasma"
+   ET.SubElement(legalBodyName, "lido:appellationValue").text = data['mp_repository']
    ET.SubElement(repositorySet, "lido:workID", {"lido:type": "inventaarionumero"}).text = data['mp_inv']
 
    # Event
