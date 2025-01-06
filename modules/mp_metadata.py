@@ -50,6 +50,7 @@ def read_lido_xml():
                 recordWrap = xml_obj['lido:lidoWrap']['lido:lido']['lido:administrativeMetadata']['lido:recordWrap']
                 mp_inv = xml_obj['lido:lidoWrap']['lido:lido']['lido:lidoRecID']['#text']
                 mp_id = recordWrap['lido:recordID']['#text']
+                mp_owner = recordWrap['lido:recordSource']['lido:legalBodyName']['lido:appellationValue']['#text']
 
                 # Tarkista, onko 'lido:recordInfoSet' olemassa
                 recordInfoSet = recordWrap.get('lido:recordInfoSet')
@@ -79,7 +80,8 @@ def read_lido_xml():
                     "mp_inv": mp_inv,
                     "mp_id": mp_id,
                     "mp_name": mp_name,
-                    "mp_created": mp_created
+                    "mp_created": mp_created,
+                    "mp_owner": mp_owner
                 }
     except Exception as e: 
         data = {

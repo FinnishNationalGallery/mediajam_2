@@ -231,7 +231,7 @@ def generate_lido_xml(data):
 
    recordSource = ET.SubElement(recordWrap, "lido:recordSource")
    legalBodyName = ET.SubElement(recordSource, "lido:legalBodyName")
-   ET.SubElement(legalBodyName, "lido:appellationValue").text = "Suomen valtio"
+   ET.SubElement(legalBodyName, "lido:appellationValue").text = data['mp_owner']
 
    recordInfoSet = ET.SubElement(recordWrap, "lido:recordInfoSet")
    ET.SubElement(recordInfoSet, "lido:recordMetadataDate").text = data['mp_created']
