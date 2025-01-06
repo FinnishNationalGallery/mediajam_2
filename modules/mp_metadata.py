@@ -31,12 +31,13 @@ def read_lido_xml():
         for file in files:
             if "lido_description.xml" in file:
                 filepath = METADATA_path + file
-                lidofile = open(filepath, "r")
+                #lidofile = open(filepath, "r")
                 #xml_obj = xmltodict.parse(lidofile.read())
                 # Määritellään nimiavaruuskartta "lido" -> "http://www.lido-schema.org"
                 NS = {'lido': 'http://www.lido-schema.org'}
                 # Luodaan ElementTree-olio
-                root = et.fromstring(lidofile.read())
+                tree = et.parse(filepath)
+                root = tree.getroot()
 
                 # 1) lidoRecID (teksti) + attribuutit (source, type)
                 lido_rec_id_elem = root.find('.//lido:lidoRecID', NS)
