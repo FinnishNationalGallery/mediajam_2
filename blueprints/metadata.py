@@ -13,6 +13,7 @@ import xml.etree.ElementTree as ET
 metadata_bp = Blueprint('metadata', __name__)
 
 config = dotenv_values(".env")
+ORGANIZATION = config['ORGANIZATION']
 DATA_path = config['DATA_FOLDER']
 METADATA_path = config['METADATA_FOLDER']
 SIP_path = config['SIP_FOLDER']
@@ -171,7 +172,7 @@ def generate_lido_xml(data):
    })
    lido = ET.SubElement(lidoWrap, "lido:lido")
    ET.SubElement(lido, "lido:lidoRecID", {
-      "lido:source": "Suomen Kansallisgalleria - Finnish National Gallery",
+      "lido:source": ORGANIZATION,
       "lido:type": "ITEM"
    }).text = data['mp_inv']
 
