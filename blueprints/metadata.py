@@ -70,7 +70,7 @@ def metadata_load_attachment():
       input = mp_metadata.load_attachment(object_id)
       with open(DATA_path+object_name,'wb') as f:
          shutil.copyfileobj(input, f)
-      message = Markup("<a href="+url_for('metadata.metadata_object_by_id', objectid=objectid)+"> Go back to previous MuseumPlus Object!</a>")
+      message = Markup("<a href=" + url_for('metadata.metadata_object_by_id', objectid=objectid) + "><button class=\"button is-dark\">Back</button></a>" + " File is saved to this folder! And you can go Back to MuseumPlus Object")
       flash(message, 'success')
    except:
       flash("Something went wrong when downloading attachment file!", 'error' )
