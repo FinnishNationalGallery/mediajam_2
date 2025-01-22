@@ -12,14 +12,9 @@ auth_bp = Blueprint('auth', __name__)
 
 config = dotenv_values(".env")
 
-# Email configuration
+# configuration
 APP_SERVER_ADDRESS = config['APP_SERVER_ADDRESS']
-MAIL_SERVER = config['MAIL_SERVER']
-MAIL_PORT = 587
-MAIL_USERNAME = config['MAIL_USERNAME']
-MAIL_PASSWORD = config['MAIL_PASSWORD']
-MAIL_USE_TLS = True
-MAIL_USE_SSL = False
+
 
 @login_manager.user_loader
 def load_user(user_id):
