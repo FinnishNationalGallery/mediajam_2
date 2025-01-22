@@ -158,7 +158,7 @@
                     {% else %}
                     <div class="buttons">
                         {% if current_user.id == 1 %}
-                        <a class="button is-success is-small" href="{{ url_for('auth.list_users') }}">
+                        <a class="button is-success is-small" href="{{ url_for('auth.login_list_registered_users') }}">
                             <strong>Welcome Admin {{current_user.id}} </strong>
                         </a>
                         {% else %}
