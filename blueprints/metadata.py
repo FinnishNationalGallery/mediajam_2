@@ -54,6 +54,9 @@ def metadata_create_lido_xml():
    message = mp_metadata.create_lido_xml(objectid)
    if len(message) > 1:
           flash("Something went wrong when creating Lido XML file. ERROR MESSAGE: " + message, 'error')
+   else:
+      message = Markup("<a href=" + url_for('metadata.metadata_object_by_id', objectid=objectid) + "><button class=\"button is-dark\">Back</button></a>" + " File is saved to this folder! And you can go Back to MuseumPlus Object")
+      flash(message, 'success')
    return redirect(url_for('metadata.metadata'))
 
 @metadata_bp.route("/metadata_load_attachment")
