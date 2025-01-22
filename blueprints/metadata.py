@@ -39,7 +39,7 @@ def metadata_save_object_by_id():
    if len(message) > 1:
       flash("Something went wrong when saving object XML file. ERROR MESSAGE: " + message, 'error')
    else:
-      message = Markup("File is saved to folder! <a href=" + url_for('metadata.metadata_object_by_id', objectid=objectid) + "><button class=\"button is-dark\">Back</button></a>"+" Back ot Object")
+      message = Markup("<a href=" + url_for('metadata.metadata_object_by_id', objectid=objectid) + "><button class=\"button is-dark\">Back</button></a>" + " File is saved to this folder! And you can go Back to MuseumPlus Object")
       flash(message, 'success')
    return redirect(url_for('data.data'))
 
