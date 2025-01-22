@@ -93,3 +93,13 @@ def register_reset(token):
    except:
       flash("Reset link has expired!")
    return render_template('login_registration_reset.html', form=form, token=token)
+
+@auth_bp.route('/list_users/')
+@login_required
+def login_list_registered_users():
+    try:
+        users = User.query.order_by(User.joined_at.desc()).all()
+        return render_template('list_users.html', users=users)
+    except Exception as e:
+        flash("Error fetching users: " + str(e))
+        return redirect(url_for('main.index'))
