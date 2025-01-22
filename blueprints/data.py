@@ -46,6 +46,8 @@ def data_import_all():
    mix_create()
    videomd_create()
    audiomd_create()
+   message = Markup("All files are imported to SIP folder")
+   flash(message, 'success')
    return redirect(url_for('sip.sip'))
 
 @data_bp.route('/data_import_skip')
