@@ -9,14 +9,15 @@
             <table class="table is-striped is-fullwidth">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Email</th>
                         <th>Joined At</th>
-                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for user in users %}
                     <tr>
+                        <td>{{ user.id }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.joined_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                     </tr>
