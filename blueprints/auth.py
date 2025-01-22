@@ -67,7 +67,7 @@ def login_reset_email():
          msg = Message('PAS palvelimen käyttäjätunnuksen sähköpostiviesti!', sender = config['MAIL_USERNAME'], recipients = [form.email.data])
          msg.body = "Hei,\n\nOlet pyytänyt salasanan resetointia PAS-paketoinnin palvelussa!\n\nVaihda tunnuksen salasana tästä linkistä: \n\n" + APP_SERVER_ADDRESS + url_for('auth.register_reset', token=mytoken) +"\n\n"
          mail.send(msg)
-         flash("Email send to : "+form.email.data+" \nRemember to check Junk Email folder!")
+         flash("Email send to : "+form.email.data+" \n\nRemember to check Junk Email folder!")
       except Exception as e:
          flash("Error! " + str(e))
    return render_template("login_reset_email.html", form=form)
@@ -84,7 +84,7 @@ def register_reset(token):
          db.session.commit()
          flash("Password changed, you can login now!")
          
-         return redirect(url_for('login'))
+         return redirect(url_for('auth.login'))
       except Exception as e:
          flash("Error! User with given token not found!")
    try:
