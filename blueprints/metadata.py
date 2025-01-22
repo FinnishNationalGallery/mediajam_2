@@ -92,6 +92,8 @@ def metadata_read_lido_xml():
 @login_required
 def metadata_import_description():
    subprocess_args('import-description', METADATA_path+'lido_description.xml', '--workspace', SIP_path)
+   message = Markup("Descriptive metadata file is imported to SIP folder")
+   flash(message, 'success')
    return redirect(url_for('sip.sip'))
 
 
