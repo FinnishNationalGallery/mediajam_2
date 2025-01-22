@@ -21,6 +21,16 @@ def create_app():
    app.config['SECRET_KEY'] = config['SECRET_KEY']
    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pas_db.db'
 
+   # Lisää sähköpostiasetukset
+   app.config.update(
+       MAIL_SERVER=config['MAIL_SERVER'],
+       MAIL_PORT=587,
+       MAIL_USE_TLS=True,
+       MAIL_USE_SSL=False,
+       MAIL_USERNAME=config['MAIL_USERNAME'],
+       MAIL_PASSWORD=config['MAIL_PASSWORD']
+   )
+   
    # Initialize extensions with the app
    init_extensions(app)
 
