@@ -99,7 +99,7 @@ def register_reset(token):
 def login_list_registered_users():
     try:
         users = User.query.order_by(User.joined_at.desc()).all()
-        return render_template('list_users.html', users=users)
+        return render_template('login_list_users.html', users=users)
     except Exception as e:
         flash("Error fetching users: " + str(e))
         return redirect(url_for('main.index'))
