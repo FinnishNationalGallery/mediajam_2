@@ -157,13 +157,18 @@
                         </div>
                     {% else %}
                     <div class="buttons">
+                        {% if current_user.id == 1 %}
+                        <button class="button is-white is-outlined is-small">Welcome Admin {{current_user.id}} </button>
+                        {% else %}
                         <button class="button is-white is-outlined is-small">Welcome {{current_user.email}} </button>
+                        {% endif %}
                         &nbsp; &nbsp;
                         <a class="button is-warning is-small" href="{{ url_for('auth.logout') }}">
                             <strong>Log out</strong>
                         </a>
                     </div>
                     {% endif %}
+
     
                 </div>
             </div>
