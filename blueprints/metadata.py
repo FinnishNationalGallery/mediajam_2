@@ -37,7 +37,10 @@ def metadata_save_object_by_id():
    #object_id = request.vars.object_id
    message = mp_metadata.save_object_by_id(objectid)
    if len(message) > 1:
-          flash("Something went wrong when saving object XML file. ERROR MESSAGE: " + message, 'error')
+      flash("Something went wrong when saving object XML file. ERROR MESSAGE: " + message, 'error')
+   else:
+      message = Markup("<a href="+url_for('metadata.metadata_object_by_id', objectid=objectid)+"> Go back to previous MuseumPlus Object!</a>")
+      flash(message, 'success')
    return redirect(url_for('data.data'))
 
 @metadata_bp.route("/metadata_create_lido_xml")
