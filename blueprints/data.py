@@ -379,8 +379,13 @@ def fix_image_magick():
         output_filename = f"{base_name}-fixed{ext}"
         output_path = os.path.join(DATA_path, output_filename)
         
-        # Run ImageMagick conversion
-        subprocess_args('convert', input_path, output_path)
+        # Run ImageMagick conversion using subprocess
+        result = subprocess.run(
+            ['convert', input_path, output_path], 
+            capture_output=True, 
+            text=True, 
+            check=True
+        )
         
         # Flash success message
         message = Markup(f"Image fixed: {filename} -> {output_filename}")
@@ -414,9 +419,14 @@ def fix_image_exiftool():
         output_filename = f"{base_name}-exiftool{ext}"
         output_path = os.path.join(DATA_path, output_filename)
         
-        # Run ImageMagick conversion
-        subprocess_args('exiftool -all= -tagsfromfile @ ', input_path, output_path)
-        
+        # Run ImageMagick conversion using subprocess
+        result = subprocess.run(
+            ['exiftool','-all','-tagsfromfile','@', input_path, output_path], 
+            capture_output=True, 
+            text=True, 
+            check=True
+        )
+                
         # Flash success message
         message = Markup(f"Image fixed: {filename} -> {output_filename}")
         flash(message, 'success')
