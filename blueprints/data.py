@@ -354,3 +354,41 @@ def mediainfo_data():
     
     return redirect(url_for('data.data'))
 
+#######################
+### FIX IMAGE       ###
+#######################
+@data_bp.route("/fix_image")
+@login_required
+def fix_image():
+    filename = request.args.get('filename')
+    view = request.args.get('page')
+    
+    # Allowed image extensions (case-insensitive)
+    allowed_extensions = ['jpeg', 'jpg', 'tif', 'tiff', 'png']
+    
+    # Check if file has an allowed extension
+    file_extension = filename.split('.')[-1].lower()
+    if file_extension not in allowed_extensions:
+        flash("File type not supported for fixing", 'error')
+        return redirect(url_for(view))
+    
+    try:
+        # Construct input and output file paths
+        input_path = os.path.join(DATA_path, filename)
+        base_name, ext = os.path.splitext(filename)
+        output_filename = f"{base_name}-fixed{ext}"
+        output_path = os.path.join(DATA_path, output_filename)
+        
+        # Run ImageMagick conversion
+        subprocess_args('convert', input_path, output_path)
+        
+        # Flash success message
+        message = Markup(f"Image fixed: {filename} -> {output_filename}")
+        flash(message, 'success')
+    except Exception as e:
+        # Flash error message if conversion fails
+        message = f"Error fixing image: {str(e)}"
+        flash(message, 'error')
+    
+    return redirect(url_for(view))
+
