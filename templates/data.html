@@ -54,14 +54,17 @@
                 {# Add fix image button for supported image types #}
                 {% set image_extensions = ['jpeg', 'JPEG', 'jpg', 'JPG', 'tif', 'TIF', 'tiff', 'TIFF', 'png', 'PNG'] %}
                 {% if file.split('.')[-1] in image_extensions %}
-                <a href="{{url_for('data.fix_image_magick')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:blue;" onclick="togglePopup()">build_circle</span>m </a>
+                <a href="{{url_for('data.fix_image_exiftool')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:blue;" onclick="togglePopup()">build_circle</span> </a>
                 {% endif %}
 
                 {# Add fix image button for supported image types #}
                 {% set image_extensions = ['jpeg', 'JPEG', 'jpg', 'JPG', 'tif', 'TIF', 'tiff', 'TIFF', 'png', 'PNG'] %}
                 {% if file.split('.')[-1] in image_extensions %}
-                <a href="{{url_for('data.fix_image_exiftool')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:blue;" onclick="togglePopup()">build_circle</span>e </a>
+                <a href="{{url_for('data.fix_image_magick')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:blue;" onclick="togglePopup()">photo_library</span> </a>
                 {% endif %}
+
+
+
                 </br>
                 {% endfor %}
                 
