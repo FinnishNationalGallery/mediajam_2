@@ -357,9 +357,9 @@ def mediainfo_data():
 #######################
 ### FIX IMAGE       ###
 #######################
-@data_bp.route("/fix_image_macig")
+@data_bp.route("/fix_image_magick")
 @login_required
-def fix_image_magic():
+def fix_image_magick():
     filename = request.args.get('filename')
     view = request.args.get('page')
     
