@@ -411,11 +411,11 @@ def fix_image_exiftool():
         # Construct input and output file paths
         input_path = os.path.join(DATA_path, filename)
         base_name, ext = os.path.splitext(filename)
-        output_filename = f"{base_name}{ext}_original"
+        output_filename = f"{base_name}-exiftool{ext}"
         output_path = os.path.join(DATA_path, output_filename)
         
         # Run ImageMagick conversion
-        subprocess_args('exiftool -all= -tagsfromfile @ ', input_path)
+        subprocess_args('exiftool -all= -tagsfromfile @ ', input_path, output_path)
         
         # Flash success message
         message = Markup(f"Image fixed: {filename} -> {output_filename}")
