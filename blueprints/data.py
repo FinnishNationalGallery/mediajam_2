@@ -421,7 +421,7 @@ def fix_image_exiftool():
         
         # Run ImageMagick conversion using subprocess
         result = subprocess.run(
-            ['exiftool','-tagsfromfile',input_path,'-all:all','-o',output_filename,input_path], 
+            ['exiftool','-tagsfromfile',input_path,'-all:all','-o',output_path,input_path], 
             capture_output=True, 
             text=True, 
             check=True
