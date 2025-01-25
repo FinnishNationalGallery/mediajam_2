@@ -386,7 +386,7 @@ def fix_image_magick():
             text=True, 
             check=True
         )
-        
+
         # Flash success message
         message = Markup(f"Image fixed: {filename} -> {output_filename}")
         flash(message, 'success')
@@ -425,8 +425,9 @@ def fix_image_exiftool():
             capture_output=True, 
             text=True, 
             check=True
-        )
-                
+        ) 
+        logfile_validation(filename + " exiftool -> "+ result.stdout + "\n")
+
         # Flash success message
         message = Markup(f"Image fixed: {filename} -> {output_filename}")
         flash(message, 'success')
