@@ -425,8 +425,8 @@ def fix_image_exiftool():
             capture_output=True, 
             text=True, 
             check=True
-        ) 
-        logfile_validation(filename + " exiftool -> "+ result.stdout + "\n")
+        ) #exiftool -overwrite_original -all= -tagsfromfile @ -all:all A0261300.tif
+        logfile_validation(filename + " exiftool -> "+ result.stdout + "-" + result.stderr "\n")
 
         # Flash success message
         message = Markup(f"Image fixed: {filename} -> {output_filename}")
