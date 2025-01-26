@@ -431,6 +431,7 @@ def fix_image_exiftool():
         # exiftool -TagsFromFile alkuperainen.jpg -all:all uusi.jpg
         # exiftool -tagsfromfile A0261300.tif -all:all -o UUSI.tif A0261300.tif
         # exiftool -overwrite_original -all= -tagsfromfile @ -all:all UUSI.tif
+        logfile_validation(filename + " exiftool -> "+ result.stdout + result.stderr + "\n")
 
         # Change filename using subprocess
         result = subprocess.run(
@@ -439,10 +440,6 @@ def fix_image_exiftool():
             text=True, 
             check=True
         ) 
-        
-        logfile_validation(filename + " exiftool -> "+ result.stdout + result.stderr + "\n")
-
-
         # Flash success message
         message = Markup(f"Image fixed: {filename} -> {output_filename}")
         flash(message, 'success')
