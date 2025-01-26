@@ -355,7 +355,7 @@ def mediainfo_data():
     return redirect(url_for('data.data'))
 
 #######################
-### FIX IMAGE       ###
+### FIX IMAGE MAGICK
 #######################
 @data_bp.route("/fix_image_magick")
 @login_required
@@ -397,6 +397,9 @@ def fix_image_magick():
     
     return redirect(url_for(view))
 
+#######################
+### FIX IMAGE EXIFTOOL
+#######################
 @data_bp.route("/fix_image_exiftool")
 @login_required
 def fix_image_exiftool():
@@ -447,3 +450,55 @@ def fix_image_exiftool():
     
     return redirect(url_for(view))
 
+#######################
+### FIX PDF GHOSTSCRIPT
+#######################
+@data_bp.route("/fix_pdf_chostscript")
+@login_required
+def fix_pdf_chostscript():
+    filename = request.args.get('filename')
+    view = request.args.get('page')
+    
+    # Allowed image extensions (case-insensitive)
+    allowed_extensions = ['pdf']
+    
+    # Check if file has an allowed extension
+    file_extension = filename.split('.')[-1].lower()
+    if file_extension not in allowed_extensions:
+        flash("File type not supported for fixing", 'error')
+        return redirect(url_for(view))
+    
+    try:
+        # Construct input and output file paths
+        input_path = os.path.join(DATA_path, filename)
+        base_name, ext = os.path.splitext(filename)
+        output_filename = f"{base_name}-ghostscript{ext}"
+        output_path = os.path.join(DATA_path, output_filename)
+        
+        # Run Exiftool conversion using subprocess
+        result = subprocess.run(
+            ['gs','-o',output_path,'-sDEVICE=pdfwrite','-dPDFSETTINGS=/prepress','-dNOPAUSE','-dBATCH',output_path], 
+            capture_output=True, 
+            text=True, 
+            check=True
+        ) 
+        # gs -o korjattu.pdf -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dBATCH epavalidi.pdf
+
+        logfile_validation(filename + " chostscript -> "+ result.stdout + result.stderr + "\n")
+
+        # Change filename using subprocess
+        #result = subprocess.run(
+        #    ['mv',input_path,output_path], 
+        #    capture_output=True, 
+        #    text=True, 
+        #    check=True
+        #) 
+        # Flash success message
+        message = Markup(f"Image fixed: {filename} -> {output_filename}")
+        flash(message, 'success')
+    except Exception as e:
+        # Flash error message if conversion fails
+        message = f"Error fixing image: {str(e)}"
+        flash(message, 'error')
+    
+    return redirect(url_for(view))
