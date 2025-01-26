@@ -10,17 +10,7 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-    <script>
-        $( function() {
-          $( document ).tooltip();
-        } );
-    </script>
-    <style>
-        label {
-          display: inline-block;
-          width: 5em;
-        }
-    </style>
+
     <style type="text/css">
         .popupcontent {
             position: absolute;
@@ -95,12 +85,16 @@
             $(".notification").fadeIn(0);
             $(".button").fadeOut(0);
         });
+        $( function() {
+          $( document ).tooltip();
+        } );
     });
 
     // Function to show and hide the popup
     function togglePopup() {
         $(".popupcontent").toggle();
     }
+
 </script>
 <body>
     <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
