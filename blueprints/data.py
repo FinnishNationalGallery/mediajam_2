@@ -421,11 +421,12 @@ def fix_image_exiftool():
         
         # Run ImageMagick conversion using subprocess
         result = subprocess.run(
-            ['exiftool','-TagsFromFile','-all:all','@',input_path], 
+            ['exiftool','-all=','-TagsFromFile','@','-all:all',input_path], 
             capture_output=True, 
             text=True, 
             check=True
         ) 
+        # exiftool -all= -tagsfromfile @ -all:all -overwrite_original A0261300.tif
         # exiftool -TagsFromFile alkuperainen.jpg -all:all uusi.jpg
         # exiftool -tagsfromfile A0261300.tif -all:all -o UUSI.tif A0261300.tif
         # exiftool -overwrite_original -all= -tagsfromfile @ -all:all UUSI.tif
