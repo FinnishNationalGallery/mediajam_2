@@ -419,7 +419,7 @@ def fix_image_exiftool():
         output_filename = f"{base_name}-exiftool{ext}"
         output_path = os.path.join(DATA_path, output_filename)
         
-        # Run ImageMagick conversion using subprocess
+        # Run Exiftool conversion using subprocess
         result = subprocess.run(
             ['exiftool','-overwrite_original','-TagsFromFile','@','-all:all',input_path], 
             capture_output=True, 
@@ -431,7 +431,17 @@ def fix_image_exiftool():
         # exiftool -TagsFromFile alkuperainen.jpg -all:all uusi.jpg
         # exiftool -tagsfromfile A0261300.tif -all:all -o UUSI.tif A0261300.tif
         # exiftool -overwrite_original -all= -tagsfromfile @ -all:all UUSI.tif
+
+        # Change filename using subprocess
+        result = subprocess.run(
+            ['mv',input_path,output_path], 
+            capture_output=True, 
+            text=True, 
+            check=True
+        ) 
+        
         logfile_validation(filename + " exiftool -> "+ result.stdout + result.stderr + "\n")
+
 
         # Flash success message
         message = Markup(f"Image fixed: {filename} -> {output_filename}")
