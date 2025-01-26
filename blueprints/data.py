@@ -486,13 +486,13 @@ def fix_pdf_ghostscript():
 
         logfile_validation(filename + " chostscript -> "+ result.stdout + result.stderr + "\n")
 
-        # Change filename using subprocess
-        #result = subprocess.run(
-        #    ['mv',input_path,output_path], 
-        #    capture_output=True, 
-        #    text=True, 
-        #    check=True
-        #) 
+        # remove original using subprocess
+        result = subprocess.run(
+            ['rm',input_path], 
+            capture_output=True, 
+            text=True, 
+            check=True
+        ) 
         # Flash success message
         message = Markup(f"Image fixed: {filename} -> {output_filename}")
         flash(message, 'success')
