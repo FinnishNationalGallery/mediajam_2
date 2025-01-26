@@ -477,7 +477,7 @@ def fix_pdf_ghostscript():
         
         # Run Exiftool conversion using subprocess
         result = subprocess.run(
-            ['gs','-o',output_path,'-sDEVICE=pdfwrite','-dPDFSETTINGS=/prepress','-dNOPAUSE','-dBATCH',output_path], 
+            ['gs','-o',output_path,'-sDEVICE=pdfwrite','-dPDFSETTINGS=/prepress','-dNOPAUSE','-dBATCH',input_path], 
             capture_output=True, 
             text=True, 
             check=True
@@ -493,7 +493,7 @@ def fix_pdf_ghostscript():
         #    text=True, 
         #    check=True
         #) 
-        
+
         # Flash success message
         message = Markup(f"Image fixed: {filename} -> {output_filename}")
         flash(message, 'success')
