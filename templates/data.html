@@ -63,7 +63,11 @@
                 <a href="{{url_for('data.fix_image_magick')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:blue;" onclick="togglePopup()">photo_library</span> </a>
                 {% endif %}
 
-
+                {# Add fix image button for supported image types #}
+                {% set image_extensions = ['pdf', 'PDF'] %}
+                {% if file.split('.')[-1] in image_extensions %}
+                <a href="{{url_for('data.fix_pdf_ghostscript')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:blue;" onclick="togglePopup()">build_circle</span> </a>
+                {% endif %}
 
                 </br>
                 {% endfor %}
