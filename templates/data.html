@@ -52,7 +52,7 @@
                 <a href="{{DATA_path}}{{file}}">{{file}}</a> 
 
                 {# Add fix image button for supported image types #}
-                {% set image_extensions = ['jpeg', 'JPEG', 'jpg', 'JPG', 'tif', 'TIF', 'tiff', 'TIFF', 'png', 'PNG'] %}
+                {% set image_extensions = ['jpeg', 'JPEG', 'jpg', 'JPG', 'tif', 'TIF', 'tiff', 'TIFF', 'png', 'PNG','pdf','PDF'] %}
                 {% if file.split('.')[-1] in image_extensions %}
                 <a href="{{url_for('data.fix_image_exiftool')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:blue;" onclick="togglePopup()">build_circle</span> </a>
                 {% endif %}
