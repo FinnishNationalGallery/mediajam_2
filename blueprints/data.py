@@ -404,7 +404,7 @@ def fix_image_exiftool():
     view = request.args.get('page')
     
     # Allowed image extensions (case-insensitive)
-    allowed_extensions = ['jpeg', 'jpg', 'tif', 'tiff', 'png']
+    allowed_extensions = ['jpeg', 'jpg', 'tif', 'tiff', 'png', 'pdf']
     
     # Check if file has an allowed extension
     file_extension = filename.split('.')[-1].lower()
