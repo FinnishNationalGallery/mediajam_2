@@ -453,9 +453,9 @@ def fix_image_exiftool():
 #######################
 ### FIX PDF GHOSTSCRIPT
 #######################
-@data_bp.route("/fix_pdf_chostscript")
+@data_bp.route("/fix_pdf_ghostscript")
 @login_required
-def fix_pdf_chostscript():
+def fix_pdf_ghostscript():
     filename = request.args.get('filename')
     view = request.args.get('page')
     
