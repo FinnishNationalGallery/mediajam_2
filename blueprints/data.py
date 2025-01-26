@@ -376,7 +376,7 @@ def fix_image_magick():
         # Construct input and output file paths
         input_path = os.path.join(DATA_path, filename)
         base_name, ext = os.path.splitext(filename)
-        output_filename = f"{base_name}-fixed{ext}"
+        output_filename = f"{base_name}-magick{ext}"
         output_path = os.path.join(DATA_path, output_filename)
         
         # Run ImageMagick conversion using subprocess
@@ -427,10 +427,7 @@ def fix_image_exiftool():
             check=True
         ) 
         # exiftool -overwrite_original -all= -tagsfromfile @ -all:all UUSI.tif
-        # exiftool -all= -tagsfromfile @ -all:all -overwrite_original A0261300.tif
-        # exiftool -TagsFromFile alkuperainen.jpg -all:all uusi.jpg
-        # exiftool -tagsfromfile A0261300.tif -all:all -o UUSI.tif A0261300.tif
-        # exiftool -overwrite_original -all= -tagsfromfile @ -all:all UUSI.tif
+
         logfile_validation(filename + " exiftool -> "+ result.stdout + result.stderr + "\n")
 
         # Change filename using subprocess
