@@ -42,31 +42,31 @@
             <div class="card-content">
                 <div class="content">
                 {% for file in files %}
-                <a href="{{url_for('data.file_delete')}}?name={{file}}&page=data.data&path=DATA"> <span class="material-symbols-outlined has-text-danger">delete_forever</span></a>
+                <a href="{{url_for('data.file_delete')}}?name={{file}}&page=data.data&path=DATA" title="Delete file"> <span class="material-symbols-outlined has-text-danger">delete_forever</span></a>
                 &rarr; 
 
-                <a href="{{url_for('data.mediainfo_data')}}?fullfilename={{file}}"> <span class="material-symbols-outlined" onclick="togglePopup()">quick_reference_all</span> </a>
+                <a href="{{url_for('data.mediainfo_data')}}?fullfilename={{file}}" title="Mediainfo txt from file"> <span class="material-symbols-outlined" onclick="togglePopup()">quick_reference_all</span> </a>
 
-                <a href="{{url_for('data.analyze_file')}}?filename={{file}}"> <span class="material-symbols-outlined" style="color:green;" onclick="togglePopup()">verified</span> </a>
+                <a href="{{url_for('data.analyze_file')}}?filename={{file}}" title="Validate file"> <span class="material-symbols-outlined" style="color:green;" onclick="togglePopup()">verified</span> </a>
 
                 <a href="{{DATA_path}}{{file}}">{{file}}</a> 
 
                 {# Add fix image button for supported image types #}
                 {% set image_extensions = ['jpeg', 'JPEG', 'jpg', 'JPG', 'tif', 'TIF', 'tiff', 'TIFF', 'png', 'PNG'] %}
                 {% if file.split('.')[-1] in image_extensions %}
-                <a href="{{url_for('data.fix_image_exiftool')}}?filename={{file}}&page=data.data" title="Exiftool fix for image" > <span class="material-symbols-outlined" style="color:steelblue;" onclick="togglePopup()">build_circle</span> </a>
+                <a href="{{url_for('data.fix_image_exiftool')}}?filename={{file}}&page=data.data" title="Exiftool fix for image file" > <span class="material-symbols-outlined" style="color:steelblue;" onclick="togglePopup()">build_circle</span> </a>
                 {% endif %}
 
                 {# Add fix image button for supported image types #}
                 {% set image_extensions = ['jpeg', 'JPEG', 'jpg', 'JPG', 'tif', 'TIF', 'tiff', 'TIFF', 'png', 'PNG'] %}
                 {% if file.split('.')[-1] in image_extensions %}
-                <a href="{{url_for('data.fix_image_magick')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:slateblue;" onclick="togglePopup()">photo_library</span> </a>
+                <a href="{{url_for('data.fix_image_magick')}}?filename={{file}}&page=data.data" title="ImageMagick fix for image file"> <span class="material-symbols-outlined" style="color:slateblue;" onclick="togglePopup()">photo_library</span> </a>
                 {% endif %}
 
                 {# Add fix image button for supported image types #}
                 {% set image_extensions = ['pdf', 'PDF'] %}
                 {% if file.split('.')[-1] in image_extensions %}
-                <a href="{{url_for('data.fix_pdf_ghostscript')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:indianred;" onclick="togglePopup()">build_circle</span> </a>
+                <a href="{{url_for('data.fix_pdf_ghostscript')}}?filename={{file}}&page=data.data" title="Ghostscript fix for PDF file"> <span class="material-symbols-outlined" style="color:indianred;" onclick="togglePopup()">build_circle</span> </a>
                 {% endif %}
 
                 </br>
