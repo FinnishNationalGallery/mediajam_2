@@ -54,7 +54,7 @@
                 {# Add fix image button for supported image types #}
                 {% set image_extensions = ['jpeg', 'JPEG', 'jpg', 'JPG', 'tif', 'TIF', 'tiff', 'TIFF', 'png', 'PNG'] %}
                 {% if file.split('.')[-1] in image_extensions %}
-                <a href="{{url_for('data.fix_image_exiftool')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:steelblue;" data-tooltip="Exiftool fix" onclick="togglePopup()">build_circle</span> </a><button class="button is-primary" data-tooltip="Tooltip Text">E</button>
+                <a href="{{url_for('data.fix_image_exiftool')}}?filename={{file}}&page=data.data"> <span class="material-symbols-outlined" style="color:steelblue;" titile="Exiftool fix for image" onclick="togglePopup()">build_circle</span> </a>
                 {% endif %}
 
                 {# Add fix image button for supported image types #}
