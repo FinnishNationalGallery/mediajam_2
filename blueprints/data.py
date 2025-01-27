@@ -64,7 +64,7 @@ def data_import_skip():
 @login_required
 def data_import():
    redir = request.args.get('flag')
-   subprocess_args('import-object', '--workspace', SIP_path, '--skip_wellformed_check', DATA_path)
+   subprocess_args('import-object', '--workspace', SIP_path, DATA_path)
    #executor.submit_stored('IMPORT', subprocess_args, 'import-object', '--workspace', SIP_path, '--skip_wellformed_check', DATA_path)
    if redir == 'once':
       return redirect(url_for('sip.sip'))
